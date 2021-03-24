@@ -1,3 +1,9 @@
+# frontend-frameworks-app
+
+Aplikacja wykonana przy użyciu biblioteki [React](https://pl.reactjs.org/) w ramach przedmiotu **Frameworki frontendowe**.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
