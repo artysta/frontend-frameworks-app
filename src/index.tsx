@@ -5,13 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Reset } from "styled-reset";
 import { TopNav } from './components/TopNav/TopNav';
-import { LeftMenu } from './components/LeftMenu/LeftMenu';
+import { MainWrapper } from './components/MainWrapper/MainWrapper';
 
 ReactDOM.render(
   <React.StrictMode>
     <Reset />
     <TopNav />
-    <LeftMenu />
+    <MainWrapper />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
