@@ -1,5 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { Publication } from "../../entities/Publication";
+import { FakePublicaitonsRepository } from "../../repositories/FakePublicationsRepository";
+import { Repository } from "../../repositories/Repository";
 
 const MainPageWrapper = styled.div`
   margin: 20px;
@@ -12,7 +15,7 @@ const MainPageWrapper = styled.div`
 
 const LatestPublicationsWrapper = styled.div``;
 
-const Publication = styled.div`
+const PublicationCard = styled.div`
   border-radius: 5px;
   display: flex;
   box-shadow: 0px 1px 3px #c7c7c7;
@@ -29,7 +32,7 @@ const WorkspacesWrapper = styled.div`
   padding: 20px 0px;
 `;
 
-const Workspace = styled.div`
+const WorkspaceCard = styled.div`
   margin-right: 20px;
   border-radius: 5px;
   display: flex;
@@ -43,7 +46,7 @@ const Workspace = styled.div`
 
 const ResumeYourWorkWrapper = styled.div``;
 
-const YourWork = styled.div`
+const YourWorkCard = styled.div`
   border-radius: 5px;
   display: flex;
   box-shadow: 0px 1px 3px #c7c7c7;
@@ -60,49 +63,31 @@ const Title = styled.p`
   font-size: 20px;
 `;
 
+function publications(): Publication[] {
+  let data: Repository<Publication> = new FakePublicaitonsRepository();
+  return data.getAll();
+}
+
 export const MainPage: FC = () => {
   return (
     <MainPageWrapper>
       <Title>Latest Publications</Title>
 
       <LatestPublicationsWrapper>
-        <Publication>
-          <img src="./logo192.png"></img>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p>01.01.1970</p>
-            <p>Lorem 1</p>
-          </div>
-        </Publication>
-        <Publication>
-          <img src="./logo192.png"></img>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p>01.01.1970</p>
-            <p>Lorem 2</p>
-          </div>
-        </Publication>
-        <Publication>
-          <img src="./logo192.png"></img>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p>01.01.1970</p>
-            <p>Lorem 3</p>
-          </div>
-        </Publication>
+        {publications().map((p, i) => (
+          <PublicationCard>
+            <img src="./logo192.png"></img>
+            <div>
+              <p>{p.title}</p>
+              <p>{p.date}</p>
+              <p>{p.userName}</p>
+            </div>
+          </PublicationCard>
+        ))};
       </LatestPublicationsWrapper>
       <Title>Workspaces</Title>
       <WorkspacesWrapper>
-        <Workspace>
+        <WorkspaceCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 1</p>
@@ -110,8 +95,8 @@ export const MainPage: FC = () => {
             <p>Sit 1</p>
             <p>01.01.1970</p>
           </div>
-        </Workspace>
-        <Workspace>
+        </WorkspaceCard>
+        <WorkspaceCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 2</p>
@@ -119,8 +104,8 @@ export const MainPage: FC = () => {
             <p>Sit 2</p>
             <p>01.01.1970</p>
           </div>
-        </Workspace>
-        <Workspace>
+        </WorkspaceCard>
+        <WorkspaceCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 3</p>
@@ -128,11 +113,11 @@ export const MainPage: FC = () => {
             <p>Sit 3</p>
             <p>01.01.1970</p>
           </div>
-        </Workspace>
+        </WorkspaceCard>
       </WorkspacesWrapper>
       <Title>ResumeYourWork</Title>
       <ResumeYourWorkWrapper>
-        <YourWork>
+        <YourWorkCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 1</p>
@@ -140,8 +125,8 @@ export const MainPage: FC = () => {
             <p>Sit 1</p>
             <p>01.01.1970</p>
           </div>
-        </YourWork>
-        <YourWork>
+        </YourWorkCard>
+        <YourWorkCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 2</p>
@@ -149,8 +134,8 @@ export const MainPage: FC = () => {
             <p>Sit 2</p>
             <p>01.01.1970</p>
           </div>
-        </YourWork>
-        <YourWork>
+        </YourWorkCard>
+        <YourWorkCard>
           <img src="./logo192.png"></img>
           <div>
             <p>Lorem ipsum 3</p>
@@ -158,7 +143,7 @@ export const MainPage: FC = () => {
             <p>Sit 3</p>
             <p>01.01.1970</p>
           </div>
-        </YourWork>
+        </YourWorkCard>
       </ResumeYourWorkWrapper>
     </MainPageWrapper>
   );
