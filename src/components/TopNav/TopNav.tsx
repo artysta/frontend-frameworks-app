@@ -70,3 +70,5 @@ export const TopNav: FC = () => {
     </NavWrapper>
   );
 };
+
+export default TopNav;

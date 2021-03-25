@@ -115,3 +115,5 @@ export const LeftMenu: FC = () => {
     </LeftMenuWrapper>
   );
 };
+
+export default LeftMenu;
