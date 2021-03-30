@@ -1,0 +1,85 @@
+export class User {
+    private _id: number;
+    private _name: string;
+    private _userName: string;
+    private _email: string;
+    private _phone: string;
+    private _website: string;
+    private _companyName: string;
+    private _city: string;
+
+    constructor(id: number, name: string, userName: string, email: string, phone: string, website: string, companyName: string, city: string) {
+        this._id = id;
+        this._name = name;
+        this._userName = userName;
+        this._email = email;
+        this._phone = phone;
+        this._website = website;
+        this._companyName = companyName;
+        this._city = city;
+    }
+
+    public get id() {
+        return this._id;
+    }
+
+    public set id(id: number) {
+        this.id = id;
+    }
+
+    public get name() {
+        return this._name;
+    }
+
+    public set name(name: string) {
+        this.name = name;
+    }
+
+    public get userName() {
+        return this._userName;
+    }
+
+    public set userName(userName: string) {
+        this._userName = userName;
+    }
+
+    public get email() {
+        return this._email;
+    }
+
+    public set email(email: string) {
+        this._email = email;
+    }
+
+    public get phone() {
+        return this._phone;
+    }
+
+    public set phone(phone: string) {
+        this._phone = phone;
+    }
+
+    public get website() {
+        return this._website;
+    }
+
+    public set website(website: string) {
+        this.website = website;
+    }
+
+    public get companyName() {
+        return this._companyName;
+    }
+
+    public set companyName(companyName: string) {
+        this.companyName = companyName;
+    }
+
+    public get city() {
+        return this._city;
+    }
+
+    public set city(city: string) {
+        this.city = city;
+    }
+}
