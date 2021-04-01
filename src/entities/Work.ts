@@ -11,7 +11,7 @@ export class Work {
         this._lastUpdated = lastUpdated;
     }
 
-    public get title() {
+    public get title(): string {
         return this._title;
     }
 
@@ -19,7 +19,7 @@ export class Work {
         this._title = title;
     }
 
-    public get contents() {
+    public get contents(): string {
         return this._contents;
     }
 
@@ -27,7 +27,7 @@ export class Work {
         this._contents = contents;
     }
     
-    public get type() {
+    public get type(): string {
         return this._type;
     }
 
@@ -35,7 +35,7 @@ export class Work {
         this._type = type;
     }
 
-    public get lastUpdated() {
+    public get lastUpdated(): string {
         return this._lastUpdated;
     }
 

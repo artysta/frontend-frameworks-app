@@ -9,7 +9,7 @@ export class Publication {
         this._userName = userName;
     }
 
-    get title() {
+    get title(): string {
         return this._title;
     }
 
@@ -17,7 +17,7 @@ export class Publication {
         this._title = title;
     }
 
-    get date() {
+    get date(): string {
         return this._date;
     }
 
@@ -25,7 +25,7 @@ export class Publication {
         this.date = date;
     }
 
-    get userName() {
+    get userName(): string {
         return this._userName;
     }
 

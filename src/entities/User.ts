@@ -19,7 +19,7 @@ export class User {
         this._city = city;
     }
 
-    public get id() {
+    public get id(): number {
         return this._id;
     }
 
@@ -27,7 +27,7 @@ export class User {
         this._id = id;
     }
 
-    public get name() {
+    public get name(): string {
         return this._name;
     }
 
@@ -35,7 +35,7 @@ export class User {
         this._name = name;
     }
 
-    public get userName() {
+    public get userName(): string {
         return this._userName;
     }
 
@@ -43,7 +43,7 @@ export class User {
         this._userName = userName;
     }
 
-    public get email() {
+    public get email(): string {
         return this._email;
     }
 
@@ -51,7 +51,7 @@ export class User {
         this._email = email;
     }
 
-    public get phone() {
+    public get phone(): string {
         return this._phone;
     }
 
@@ -59,7 +59,7 @@ export class User {
         this._phone = phone;
     }
 
-    public get website() {
+    public get website(): string {
         return this._website;
     }
 
@@ -67,7 +67,7 @@ export class User {
         this._website = website;
     }
 
-    public get companyName() {
+    public get companyName(): string {
         return this._companyName;
     }
 
@@ -75,7 +75,7 @@ export class User {
         this._companyName = companyName;
     }
 
-    public get city() {
+    public get city(): string {
         return this._city;
     }
 

@@ -11,7 +11,7 @@ export class Workspace {
         this._lastUpdated = lastUpdated;
     }
 
-    public get title() {
+    public get title(): string {
         return this._title;
     }
 
@@ -19,7 +19,7 @@ export class Workspace {
         this._title = title;
     }
 
-    public get type() {
+    public get type(): string {
         return this._type;
     }
 
@@ -27,7 +27,7 @@ export class Workspace {
         this._type = type;
     }
 
-    public get numberOfUsers() {
+    public get numberOfUsers(): number {
         return this._numberOfUsers;
     }
 
@@ -35,7 +35,7 @@ export class Workspace {
         this._numberOfUsers = numberOfUsers;
     }
 
-    public get lastUpdated() {
+    public get lastUpdated(): string {
         return this._lastUpdated;
     }
 
