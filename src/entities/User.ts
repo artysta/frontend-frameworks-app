@@ -24,7 +24,7 @@ export class User {
     }
 
     public set id(id: number) {
-        this.id = id;
+        this._id = id;
     }
 
     public get name() {
@@ -32,7 +32,7 @@ export class User {
     }
 
     public set name(name: string) {
-        this.name = name;
+        this._name = name;
     }
 
     public get userName() {
@@ -64,7 +64,7 @@ export class User {
     }
 
     public set website(website: string) {
-        this.website = website;
+        this._website = website;
     }
 
     public get companyName() {
@@ -72,7 +72,7 @@ export class User {
     }
 
     public set companyName(companyName: string) {
-        this.companyName = companyName;
+        this._companyName = companyName;
     }
 
     public get city() {
@@ -80,6 +80,6 @@ export class User {
     }
 
     public set city(city: string) {
-        this.city = city;
+        this._city = city;
     }
 }
