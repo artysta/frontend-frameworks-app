@@ -1,5 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
+import useDropdown from "react-dropdown-hook";
+import ExpandedMenu from "../ExpandedMenu/ExpandedMenu";
 
 const NavWrapper = styled.div`
   background-color: white;
@@ -22,9 +24,23 @@ const HomeIcon = styled.img`
   margin: 10px;
 `;
 
-const NavTitle = styled.p`
+const NavMenu = styled.p`
   color: black;
-  font-size: 30px;
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  span {
+    transition: 0.5s;
+
+    :hover {
+      color: #5783e9;
+      transition: 0.5s;
+    }
+  }
 
   a {
     text-decoration: none;
@@ -59,13 +75,23 @@ const SearchBoxInput = styled.input`
 `;
 
 export const TopNav: FC = () => {
+  const [
+    wrapperRef,
+    dropdownOpen,
+    toggleDropdown,
+    closeDropdown,
+  ] = useDropdown();
+
   return (
     <NavWrapper>
       <Logo src="./logo192.png" />
       <HomeIcon src="./media/icons/house.png" />
-      <NavTitle>
-        <a href="">Home</a>
-      </NavTitle>
+      <NavMenu ref={wrapperRef}>
+        <div onClick={toggleDropdown}>
+          <span>Menu</span>
+        </div>
+        {dropdownOpen && <>{<ExpandedMenu />}</>}
+      </NavMenu>
       <SearchBoxInput placeholder="Search..." />
     </NavWrapper>
   );
