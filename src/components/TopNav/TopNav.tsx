@@ -74,6 +74,24 @@ const SearchBoxInput = styled.input`
   }
 `;
 
+const Icon = styled.img`
+  margin: 10px;
+  width: 35px;
+  height: 35px;
+  
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const IconContainer = styled.div`
+  background-color: #dddddd;
+  border-radius: 50%;
+  display: flex;
+  padding: 5px;
+  margin: 10px;
+`;
+
 export const TopNav: FC = () => {
   const [
     wrapperRef,
@@ -93,6 +111,13 @@ export const TopNav: FC = () => {
         {dropdownOpen && <>{<ExpandedMenu />}</>}
       </NavMenu>
       <SearchBoxInput placeholder="Search..." />
+      <Icon src="./media/icons/house.svg" />
+      <IconContainer>
+        <Icon src="./media/icons/comments.svg" />
+      </IconContainer>
+      <IconContainer>
+        <Icon src="./media/icons/bell.svg" />
+      </IconContainer>
     </NavWrapper>
   );
 };
