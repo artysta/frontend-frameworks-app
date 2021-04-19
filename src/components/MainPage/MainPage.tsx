@@ -72,6 +72,15 @@ const Title = styled.p`
   font-size: 20px;
 `;
 
+const ResumeYourWorkItemsWrapper = styled.div`
+  display: flex;
+`;
+
+const Elements = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
 const CardDetails = styled.div`
   display: table-cell;
   position: relative;
@@ -93,6 +102,41 @@ const Icon = styled.img`
   width: 15px;
   vertical-align: middle;
   margin: 0 5px;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px;
+  }
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    width: 200px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    color: #5783e9;
+  }
 `;
 
 function publications(): Publication[] {
@@ -147,8 +191,20 @@ export const MainPage: FC = () => {
           </WorkspaceCard>
         ))}
       </WorkspacesWrapper>
-      <Title>ResumeYourWork</Title>
       <ResumeYourWorkWrapper>
+        <ResumeYourWorkItemsWrapper>
+          <Title>Resume Your Work</Title>
+          <Elements>
+            <FilterWrapper>
+              <input type="text" placeholder="Filter by title..."></input>
+            </FilterWrapper>
+            <SelectWrapper>
+              <select>
+                <option value="followed">Followed</option>
+              </select>
+            </SelectWrapper>
+          </Elements>
+        </ResumeYourWorkItemsWrapper>
         {works().map((w, i) => (
           <YourWorkCard>
             <CardDetails>
