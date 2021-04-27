@@ -92,6 +92,19 @@ const IconContainer = styled.div`
   margin: 10px;
 `;
 
+const IconCounter = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #5783e9;
+  padding: 10px;
+  border-radius: 40%;
+  width: 7px;
+  height: 2px;
+  margin: -10px 0 0 40px;
+`;
+
 export const TopNav: FC = () => {
   const [
     wrapperRef,
@@ -113,9 +126,11 @@ export const TopNav: FC = () => {
       <SearchBoxInput placeholder="Search..." />
       <Icon src="./media/icons/house.svg" />
       <IconContainer>
+        <IconCounter>3</IconCounter>
         <Icon src="./media/icons/comments.svg" />
       </IconContainer>
       <IconContainer>
+      <IconCounter>3</IconCounter>
         <Icon src="./media/icons/bell.svg" />
       </IconContainer>
     </NavWrapper>
