@@ -20,15 +20,36 @@ const MainPageWrapper = styled.div`
 `;
 
 const LatestPublicationsWrapper = styled.div`
+  display: flex;
   border-radius: 5px;
   box-shadow: 0px 1px 3px #c7c7c7;
-  padding: 20px;
   margin: 20px 0px;
+`;
+
+const LatestPublicationFeatured = styled.div`
+  position: relative;
+  background-image: url("./placeholder350.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 430px;
+  width: 430px;
+  height: 430px;
+`;
+
+const LatestPublicationFeaturedFooter = styled.div`
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+`;
+
+const LatestPublications = styled.div`
+  margin: 15px 0 15px 15px;
+  width: 50%;
 `;
 
 const PublicationCard = styled.div`
   display: flex;
-  margin: 20px 0px;
+  margin: 15px 0px;
 
   div {
     display: block;
@@ -91,6 +112,7 @@ const CardDetails = styled.div`
 const CardFooter = styled.div`
   position: absolute;
   bottom: 10px;
+  width: 100%;
 `;
 
 const Image = styled.img`
@@ -157,22 +179,37 @@ function works(): Work[] {
 export const MainPage: FC = () => {
   return (
     <MainPageWrapper>
-      <Title>Latest Publications</Title>
       <LatestPublicationsWrapper>
-        {publications().map((p, i) => (
-          <PublicationCard>
-            <Image src="./placeholder350.png" />
-            <CardDetails>
-              <Title>{p.title}</Title>
-              <CardFooter>
-                <p>
-                  <Icon src="./media/icons/entities.png" />
-                  {p.date} &bull; {p.userName}
-                </p>
-              </CardFooter>
-            </CardDetails>
-          </PublicationCard>
-        ))}
+        <LatestPublicationFeatured>
+          <LatestPublicationFeaturedFooter>
+            {
+              <div>
+                <Title>{publications()[0].title}</Title>
+                {publications()[0].date}
+                <Icon src="./media/icons/people.svg" />
+                {publications()[0].userName}
+              </div>
+            }
+          </LatestPublicationFeaturedFooter>
+        </LatestPublicationFeatured>
+        <LatestPublications>
+          <Title>Latest Publications</Title>
+          {publications().map((p, i) => (
+            <PublicationCard>
+              <Image src="./placeholder350.png" />
+              <CardDetails>
+                <Title>{p.title}</Title>
+                <CardFooter>
+                  <p>
+                    <Icon src="./media/icons/entities.png" />
+                    {p.date} &bull; {p.userName}
+                  </p>
+                </CardFooter>
+              </CardDetails>
+            </PublicationCard>
+          ))}
+          <Title>See more publications</Title>
+        </LatestPublications>
       </LatestPublicationsWrapper>
       <Title>Workspaces</Title>
       <WorkspacesWrapper>
