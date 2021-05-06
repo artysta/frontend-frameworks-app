@@ -7,7 +7,8 @@ import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepos
 import { FakeWorksRepository } from "../../repositories/FakeWorksRepository";
 import { Repository } from "../../repositories/Repository";
 import { Work } from "../../entities/Work";
-import { Colors } from "../../styledHelpers/Colors"
+import { Colors } from "../../styledHelpers/Colors";
+import { LatestPublications } from "../LatestPublications/LatestPublications";
 
 const MainPageWrapper = styled.div`
   margin: 20px;
@@ -18,43 +19,6 @@ const MainPageWrapper = styled.div`
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-`;
-
-const LatestPublicationsWrapper = styled.div`
-  display: flex;
-  border-radius: 5px;
-  box-shadow: 0px 1px 3px ${Colors.gray2};
-  margin: 20px 0px;
-`;
-
-const LatestPublicationFeatured = styled.div`
-  position: relative;
-  background-image: url("./placeholder350.png");
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-size: 430px;
-  width: 430px;
-  height: 430px;
-`;
-
-const LatestPublicationFeaturedFooter = styled.div`
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-`;
-
-const LatestPublications = styled.div`
-  margin: 15px 0 15px 15px;
-  width: 50%;
-`;
-
-const PublicationCard = styled.div`
-  display: flex;
-  margin: 15px 0px;
-
-  div {
-    display: block;
-  }
 `;
 
 const WorkspacesWrapper = styled.div`
@@ -180,38 +144,7 @@ function works(): Work[] {
 export const MainPage: FC = () => {
   return (
     <MainPageWrapper>
-      <LatestPublicationsWrapper>
-        <LatestPublicationFeatured>
-          <LatestPublicationFeaturedFooter>
-            {
-              <div>
-                <Title>{publications()[0].title}</Title>
-                {publications()[0].date}
-                <Icon src="./media/icons/people.svg" />
-                {publications()[0].userName}
-              </div>
-            }
-          </LatestPublicationFeaturedFooter>
-        </LatestPublicationFeatured>
-        <LatestPublications>
-          <Title>Latest Publications</Title>
-          {publications().map((p, i) => (
-            <PublicationCard>
-              <Image src="./placeholder350.png" />
-              <CardDetails>
-                <Title>{p.title}</Title>
-                <CardFooter>
-                  <p>
-                    <Icon src="./media/icons/entities.png" />
-                    {p.date} &bull; {p.userName}
-                  </p>
-                </CardFooter>
-              </CardDetails>
-            </PublicationCard>
-          ))}
-          <Title>See more publications</Title>
-        </LatestPublications>
-      </LatestPublicationsWrapper>
+      <LatestPublications />
       <Title>Workspaces</Title>
       <WorkspacesWrapper>
         {workspaces().map((w, i) => (
