@@ -6,8 +6,8 @@ const Wrapper = styled.div`
   position: absolute;
   background-color: ${Colors.white};
   border-radius: 0 0 4px 4px;
-  border: solid #c7c7c7;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  border: solid ${Colors.gray2};
+  box-shadow: 0px 1px 3px ${Colors.gray2};
   border-width: 0 1px 1px 1px;
   margin: 25px 0 0 0;
   width: 300px;
@@ -39,7 +39,7 @@ const FilterWrapper = styled.div`
     width: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #c7c7c7;
+    border: 1px solid ${Colors.gray2};
     border-radius: 5px;
     outline: none;
   }
@@ -52,8 +52,8 @@ const OptionsWrapper = styled.div`
 `;
 
 const AccountOptionsWrapper = styled.div`
-  border-top: 1px solid #c7c7c7;
-  border-bottom: 1px solid #c7c7c7;
+  border-top: 1px solid ${Colors.gray2};
+  border-bottom: 1px solid ${Colors.gray2};
   padding: 10px;
 `;
 

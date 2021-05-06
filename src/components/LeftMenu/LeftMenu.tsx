@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { Colors } from "../../styledHelpers/Colors"
 
 const LeftMenuWrapper = styled.div`
   display: block;
@@ -12,7 +13,7 @@ const Panel = styled.div`
   width: 270px;
   display: block;
   text-align: center;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
 `;
 
 const MenuOptionsWrapper = styled.div`
@@ -25,12 +26,12 @@ const MenuOptionsWrapper = styled.div`
       align-items: center;
       padding: 5px;
       a {
-        color: black;
+        color: ${Colors.black};
         text-decoration: none;
         transition: 0.2s;
 
         :hover {
-          color: #5783e9;
+          color: ${Colors.blue2};
           transition: 0.2s;
         }
       }
@@ -45,18 +46,18 @@ const UserImage = styled.img`
 `;
 
 const UserName = styled.p`
-  color: #5783e9;
+  color: ${Colors.blue3};
   font-size: 20px;
 `;
 
 const UserJobTitle = styled.p`
-  color: gray;
+  color: ${Colors.gray2};
   font-size: 15px;
 `;
 
 const Line = styled.hr`
-  background-color: #5783e9;
-  color: #5783e9;
+  background-color: ${Colors.blue3};
+  color: ${Colors.blue3};
   width: 95%;
   height: 1px;
   border-width: 0px;
@@ -67,7 +68,7 @@ const MenuIcon = styled.img`
 `;
 
 const UserMenuIcon = styled.img`
-  border: 1px solid #000000;
+  border: 1px solid ${Colors.black};
   padding: 5px 15px;
   border-radius: 5px;
   margin: 10px;

@@ -2,16 +2,17 @@ import { FC } from "react";
 import styled from "styled-components";
 import useDropdown from "react-dropdown-hook";
 import ExpandedMenu from "../ExpandedMenu/ExpandedMenu";
+import { Colors } from "../../styledHelpers/Colors"
 
 const NavWrapper = styled.div`
-  background-color: white;
+  background-color: ${Colors.white};
   margin-bottom: 15px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
 `;
 
 const Logo = styled.img`
@@ -25,7 +26,7 @@ const HomeIcon = styled.img`
 `;
 
 const NavMenu = styled.p`
-  color: black;
+  color: ${Colors.black};
   font-size: 20px;
   transition: 0.5s;
   cursor: pointer;
@@ -37,26 +38,26 @@ const NavMenu = styled.p`
     transition: 0.5s;
 
     :hover {
-      color: #5783e9;
+      color: ${Colors.blue3};
       transition: 0.5s;
     }
   }
 
   a {
     text-decoration: none;
-    color: black;
+    color: ${Colors.black};
     transition: 0.2s;
 
     :hover {
-      color: #5783e9;
+      color: ${Colors.blue3};
       transition: 0.2s;
     }
   }
 `;
 
 const SearchBoxInput = styled.input`
-  border: 1px solid #c7c7c7;
-  border-bottom: 3px solid #c7c7c7;
+  border: 1px solid ${Colors.gray2};
+  border-bottom: 3px solid ${Colors.gray2};
   border-radius: 5px;
   display: block;
   margin: auto;
@@ -67,8 +68,8 @@ const SearchBoxInput = styled.input`
   transition: 0.5s;
 
   :focus {
-    border: 1px solid #5783e9;
-    border-bottom: 3px solid #5783e9;
+    border: 1px solid ${Colors.blue3};
+    border-bottom: 3px solid ${Colors.blue3};
     border-radius: 5px;
     transition: 0.5s;
   }
@@ -85,7 +86,7 @@ const Icon = styled.img`
 `;
 
 const IconContainer = styled.div`
-  background-color: #dddddd;
+  background-color: ${Colors.gray4};
   border-radius: 50%;
   display: flex;
   padding: 5px;
@@ -96,8 +97,8 @@ const IconCounter = styled.span`
   position: absolute;
   display: flex;
   align-items: center;
-  color: white;
-  background-color: #5783e9;
+  color: ${Colors.white};
+  background-color: ${Colors.blue3};
   padding: 10px;
   border-radius: 40%;
   width: 7px;

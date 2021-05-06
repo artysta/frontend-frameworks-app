@@ -7,13 +7,14 @@ import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepos
 import { FakeWorksRepository } from "../../repositories/FakeWorksRepository";
 import { Repository } from "../../repositories/Repository";
 import { Work } from "../../entities/Work";
+import { Colors } from "../../styledHelpers/Colors"
 
 const MainPageWrapper = styled.div`
   margin: 20px;
   border-radius: 5px;
   width: 100%;
   display: block;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -22,7 +23,7 @@ const MainPageWrapper = styled.div`
 const LatestPublicationsWrapper = styled.div`
   display: flex;
   border-radius: 5px;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
   margin: 20px 0px;
 `;
 
@@ -66,7 +67,7 @@ const WorkspaceCard = styled.div`
   border-radius: 5px;
   display: flex;
   width: 100%;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
 
   div {
@@ -79,7 +80,7 @@ const ResumeYourWorkWrapper = styled.div``;
 const YourWorkCard = styled.div`
   border-radius: 5px;
   display: flex;
-  box-shadow: 0px 1px 3px #c7c7c7;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
   margin: 20px 0px;
 
@@ -89,7 +90,7 @@ const YourWorkCard = styled.div`
 `;
 
 const Title = styled.p`
-  color: #5783e9;
+  color: ${Colors.blue3};
   font-size: 20px;
 `;
 
@@ -136,7 +137,7 @@ const FilterWrapper = styled.div`
   input {
     width: 200px;
     padding: 10px;
-    border: 1px solid #c7c7c7;
+    border: 1px solid ${Colors.gray2};
     border-radius: 5px;
     outline: none;
     margin-right: 10px;
@@ -157,7 +158,7 @@ const SelectWrapper = styled.div`
     border-radius: 5px;
     outline: none;
     cursor: pointer;
-    color: #5783e9;
+    color: ${Colors.blue3};
   }
 `;
 
