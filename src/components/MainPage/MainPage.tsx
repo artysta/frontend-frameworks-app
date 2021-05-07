@@ -1,14 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Publication } from "../../entities/Publication";
-import { Workspace } from "../../entities/Workspace";
-import { FakePublicaitonsRepository } from "../../repositories/FakePublicationsRepository";
-import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepository";
 import { FakeWorksRepository } from "../../repositories/FakeWorksRepository";
 import { Repository } from "../../repositories/Repository";
 import { Work } from "../../entities/Work";
 import { Colors } from "../../styledHelpers/Colors";
 import { LatestPublications } from "../LatestPublications/LatestPublications";
+import { Workspaces } from "../Workspaces/Workspaces";
 
 const MainPageWrapper = styled.div`
   margin: 20px;
@@ -19,24 +16,6 @@ const MainPageWrapper = styled.div`
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-`;
-
-const WorkspacesWrapper = styled.div`
-  display: flex;
-  padding: 20px 0px;
-`;
-
-const WorkspaceCard = styled.div`
-  margin-right: 20px;
-  border-radius: 5px;
-  display: flex;
-  width: 100%;
-  box-shadow: 0px 1px 3px ${Colors.gray2};
-  padding: 20px;
-
-  div {
-    display: block;
-  }
 `;
 
 const ResumeYourWorkWrapper = styled.div``;
@@ -74,23 +53,6 @@ const CardDetails = styled.div`
   width: 100%;
 `;
 
-const CardFooter = styled.div`
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-`;
-
-const Image = styled.img`
-  width: 100px;
-  height: 100px;
-`;
-
-const Icon = styled.img`
-  width: 15px;
-  vertical-align: middle;
-  margin: 0 5px;
-`;
-
 const FilterWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -126,16 +88,6 @@ const SelectWrapper = styled.div`
   }
 `;
 
-function publications(): Publication[] {
-  let data: Repository<Publication> = new FakePublicaitonsRepository();
-  return data.getAll();
-}
-
-function workspaces(): Workspace[] {
-  let data: Repository<Workspace> = new FakeWorkspacesRepository();
-  return data.getAll();
-}
-
 function works(): Work[] {
   let data: Repository<Work> = new FakeWorksRepository();
   return data.getAll();
@@ -145,23 +97,7 @@ export const MainPage: FC = () => {
   return (
     <MainPageWrapper>
       <LatestPublications />
-      <Title>Workspaces</Title>
-      <WorkspacesWrapper>
-        {workspaces().map((w, i) => (
-          <WorkspaceCard>
-            <Image src="./placeholder350.png" />
-            <CardDetails>
-              <Title>{w.title}</Title>
-              <CardFooter>
-                <p>
-                  <Icon src="./media/icons/entities.png" />
-                  {w.type} &bull; {w.numberOfUsers} &bull; {w.lastUpdated}
-                </p>
-              </CardFooter>
-            </CardDetails>
-          </WorkspaceCard>
-        ))}
-      </WorkspacesWrapper>
+      <Workspaces />
       <ResumeYourWorkWrapper>
         <ResumeYourWorkItemsWrapper>
           <Title>Resume Your Work</Title>
