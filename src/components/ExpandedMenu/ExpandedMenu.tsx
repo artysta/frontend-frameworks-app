@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -83,47 +84,67 @@ export const ExpandedMenu: FC = () => {
         <SectionTitle>Platform</SectionTitle>
         <ul>
           <li>
-            <img src="./media/icons/house.svg" />
-            Home
+            <Link to="/">
+              <img src="./media/icons/house.svg" />
+              Home
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/publications.svg" />
-            Publications
+            <Link to="/test">
+              <img src="./media/icons/publications.svg" />
+              Publications
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/people.svg" />
-            People
+            <Link to="/test">
+              <img src="./media/icons/people.svg" />
+              People
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/entities.svg" />
-            Entities
+            <Link to="/entities">
+              <img src="./media/icons/entities.svg" />
+              Entities
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/administration.svg" />
-            Administration
+            <Link to="/test">
+              <img src="./media/icons/administration.svg" />
+              Administration
+            </Link>
           </li>
         </ul>
         <SectionTitle>Workspaces</SectionTitle>
         <ul>
           <li>
-            <img src="./media/icons/entities2.svg" />
-            Client contract
+            <Link to="/workspace">
+              <img src="./media/icons/entities2.svg" />
+              Client contract
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/house2.svg" />
-            Supplier contract
+            <Link to="/workspace">
+              <img src="./media/icons/house2.svg" />
+              Supplier contract
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/entities.svg" />
-            Corporate
+            <Link to="/workspace">
+              <img src="./media/icons/entities.svg" />
+              Corporate
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/house.svg" />
-            Group Norms
+            <Link to="/workspace">
+              <img src="./media/icons/house.svg" />
+              Group Norms
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/house.svg" />
-            Real estate contracts
+            <Link to="/workspace">
+              <img src="./media/icons/house.svg" />
+              Real estate contracts
+            </Link>
           </li>
         </ul>
       </OptionsWrapper>
@@ -131,25 +152,31 @@ export const ExpandedMenu: FC = () => {
         <SectionTitle>Account</SectionTitle>
         <ul>
           <li>
-            <img src="./media/icons/house.svg" />
-            User name
+            <Link to="/profile">
+              <img src="./media/icons/house.svg" />
+              User name
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/privacy.svg" />
-            Privacy
+            <Link to="/profile">
+              <img src="./media/icons/privacy.svg" />
+              Privacy
+            </Link>
           </li>
           <li>
-            <img src="./media/icons/settings.svg" />
+            <Link to="/profile">
+              <img src="./media/icons/settings.svg" />
+            </Link>
             Settings
           </li>
         </ul>
       </AccountOptionsWrapper>
       <LogoutButtonWrapper>
-      <img src="./media/icons/logout.svg" />
-      <LogoutButton>
-          Logout
+        <img src="./media/icons/logout.svg" />
+        <LogoutButton>
+          <Link to="/test">Logout</Link>
         </LogoutButton>
-        </LogoutButtonWrapper>
+      </LogoutButtonWrapper>
     </Wrapper>
   );
 };

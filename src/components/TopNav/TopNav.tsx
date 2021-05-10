@@ -2,7 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 import useDropdown from "react-dropdown-hook";
 import ExpandedMenu from "../ExpandedMenu/ExpandedMenu";
-import { Colors } from "../../styledHelpers/Colors"
+import { Colors } from "../../styledHelpers/Colors";
+import { Link } from "react-router-dom";
 
 const NavWrapper = styled.div`
   background-color: ${Colors.white};
@@ -79,7 +80,7 @@ const Icon = styled.img`
   margin: 10px;
   width: 35px;
   height: 35px;
-  
+
   :hover {
     cursor: pointer;
   }
@@ -116,7 +117,9 @@ export const TopNav: FC = () => {
 
   return (
     <NavWrapper>
-      <Logo src="./logo192.png" />
+      <Link to="/test">
+        <Logo src="./logo192.png" />
+      </Link>
       <HomeIcon src="./media/icons/house.png" />
       <NavMenu ref={wrapperRef}>
         <div onClick={toggleDropdown}>
@@ -125,15 +128,21 @@ export const TopNav: FC = () => {
         {dropdownOpen && <>{<ExpandedMenu />}</>}
       </NavMenu>
       <SearchBoxInput placeholder="Search..." />
-      <Icon src="./media/icons/house.svg" />
-      <IconContainer>
-        <IconCounter>3</IconCounter>
-        <Icon src="./media/icons/comments.svg" />
-      </IconContainer>
-      <IconContainer>
-      <IconCounter>3</IconCounter>
-        <Icon src="./media/icons/bell.svg" />
-      </IconContainer>
+      <Link to="/test">
+        <Icon src="./media/icons/house.svg" />
+      </Link>
+      <Link to="/test">
+        <IconContainer>
+          <IconCounter>3</IconCounter>
+          <Icon src="./media/icons/comments.svg" />
+        </IconContainer>
+      </Link>
+      <Link to="/test">
+        <IconContainer>
+          <IconCounter>3</IconCounter>
+          <Icon src="./media/icons/bell.svg" />
+        </IconContainer>
+      </Link>
     </NavWrapper>
   );
 };

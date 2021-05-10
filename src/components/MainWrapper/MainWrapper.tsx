@@ -3,25 +3,47 @@ import styled from "styled-components";
 import TopNav from "../TopNav/TopNav";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import MainPage from "../MainPage/MainPage";
-
+import ProfilePage from "../ProfilePage/ProfilePage";
+import EntitiesPage from "../EntitiesPage/EntitiesPage";
+import WorkspacePage from "../WorkspacePage/WorkspacePage";
+import TestPage from "../TestPage/TestPage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: block;
-`
+`;
 
 const ContentWrapper = styled.div`
   display: flex;
-`
+`;
 
 export const MainWrapper: FC = () => {
   return (
-    <Wrapper>
-      <TopNav />
-      <ContentWrapper>
-        <LeftMenu />
-        <MainPage />
-      </ContentWrapper>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <TopNav />
+        <ContentWrapper>
+          <LeftMenu />
+          <Switch>
+            <Route path="/" exact>
+              <MainPage />
+            </Route>
+            <Route path="/profile" exact>
+              <ProfilePage />
+            </Route>
+            <Route path="/entities" exact>
+              <EntitiesPage />
+            </Route>
+            <Route path="/workspace" exact>
+              <WorkspacePage />
+            </Route>
+            <Route path="/test" exact>
+              <TestPage />
+            </Route>
+          </Switch>
+        </ContentWrapper>
+      </Wrapper>
+    </Router>
   );
 };
 

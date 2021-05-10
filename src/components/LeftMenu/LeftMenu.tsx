@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Colors } from "../../styledHelpers/Colors"
+import { Colors } from "../../styledHelpers/Colors";
+import { Link } from "react-router-dom";
 
 const LeftMenuWrapper = styled.div`
   display: block;
@@ -79,19 +80,21 @@ export const LeftMenu: FC = () => {
     <LeftMenuWrapper>
       <Panel>
         <UserImage src="./logo192.png" />
-        <UserName>Lorem ipsum</UserName>
-        <UserJobTitle>Job title - Company</UserJobTitle>
+        <Link to="/profile">
+          <UserName>Lorem ipsum</UserName>
+          <UserJobTitle>Job title - Company</UserJobTitle>
+        </Link>
         <Line />
         <MenuOptionsWrapper>
           <ul>
             <li>
               <MenuIcon src="./media/icons/network.png" />
-              <a href="">Your Network</a>
+              <Link to="/test">Your Network</Link>
               <UserMenuIcon src="./media/icons/user-plus.png" />
             </li>
             <li>
               <MenuIcon src="./media/icons/publications.png" />
-              <a href="">Your Publications</a>
+              <Link to="/test">Your Publications</Link>
               <UserMenuIcon src="./media/icons/plus.png" />
             </li>
           </ul>
@@ -101,15 +104,15 @@ export const LeftMenu: FC = () => {
         <ul>
           <li>
             <MenuIcon src="./media/icons/publications.png" />
-            <a href="">Publications</a>
+            <Link to="/test">Publications</Link>
           </li>
           <li>
             <MenuIcon src="./media/icons/ecosystem.png" />
-            <a href="">Ecosystem</a>
+            <Link to="/test">Ecosystem</Link>
           </li>
           <li>
             <MenuIcon src="./media/icons/entities.png" />
-            <a href="">Entities</a>
+            <Link to="/entities">Entities</Link>
           </li>
         </ul>
       </MenuOptionsWrapper>
