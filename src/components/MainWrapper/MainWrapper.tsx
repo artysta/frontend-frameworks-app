@@ -6,14 +6,21 @@ import MainPage from "../MainPage/MainPage";
 
 
 const Wrapper = styled.div`
+  display: block;
+`
+
+const ContentWrapper = styled.div`
   display: flex;
 `
 
 export const MainWrapper: FC = () => {
   return (
     <Wrapper>
-      <LeftMenu />
-      <MainPage />
+      <TopNav />
+      <ContentWrapper>
+        <LeftMenu />
+        <MainPage />
+      </ContentWrapper>
     </Wrapper>
   );
 };

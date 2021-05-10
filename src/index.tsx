@@ -10,7 +10,6 @@ import { MainWrapper } from './components/MainWrapper/MainWrapper';
 ReactDOM.render(
   <React.StrictMode>
     <Reset />
-    <TopNav />
     <MainWrapper />
     <App />
   </React.StrictMode>,
