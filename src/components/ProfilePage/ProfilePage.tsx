@@ -1,6 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Colors } from "../../styledHelpers/Colors"
+import { Colors } from "../../styledHelpers/Colors";
+import { Profile } from "./Profile";
+import { Interract } from "./Interract";
+import { Characteristics } from "./Characteristics";
+import { Proposals } from "./Proposals";
 
 const Wrapper = styled.div`
   margin: 20px;
@@ -8,8 +12,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   width: 100%;
   box-shadow: 0px 1px 3px ${Colors.gray2};
-  justify-content: center;
-  display: flex;
+  display: block;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
@@ -17,7 +20,10 @@ const Wrapper = styled.div`
 export const ProfilePage: FC = () => {
   return (
     <Wrapper>
-      <span>This is a profile page!</span>
+      <Interract />
+      <Profile />
+      <Characteristics />
+      <Proposals />
     </Wrapper>
   );
 };
