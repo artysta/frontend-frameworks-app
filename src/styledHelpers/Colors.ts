@@ -8,4 +8,6 @@ export const Colors = {
     blue1: '#4b5268',
     blue2: '#2f439f',
     blue3: '#5783e9',
+    aqua1: '#e6f0f3',
+    aqua2: '#549bae',
 }
