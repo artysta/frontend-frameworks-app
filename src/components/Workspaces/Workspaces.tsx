@@ -12,18 +12,19 @@ const Container = styled.div`
 const WorkspacesWrapper = styled.div`
   display: flex;
   padding: 20px 0px;
+  overflow: auto;
 `;
 
 const WorkspaceCard = styled.div`
   margin-right: 20px;
   border-radius: 5px;
   display: flex;
-  width: 100%;
   box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
 
   div {
     display: block;
+    width: 400px;
   }
 `;
 
