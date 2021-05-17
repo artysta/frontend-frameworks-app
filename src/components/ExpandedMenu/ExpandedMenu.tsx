@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   border-width: 0 1px 1px 1px;
   margin: 25px 0 0 0;
   width: 300px;
+  z-index: 99;
 
   ul {
     li {
