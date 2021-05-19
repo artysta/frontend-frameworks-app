@@ -1,19 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { Reset } from "styled-reset";
-import { TopNav } from './components/TopNav/TopNav';
-import { MainWrapper } from './components/MainWrapper/MainWrapper';
+import { MainWrapper } from "./components/MainWrapper/MainWrapper";
+import { Provider } from "react-redux";
+import store from "./tools/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Reset />
-    <MainWrapper />
-    <App />
+    <Provider store={store}>
+      <Reset />
+      <MainWrapper />
+      <App />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
