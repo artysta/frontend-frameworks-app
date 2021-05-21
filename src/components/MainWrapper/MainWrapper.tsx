@@ -14,12 +14,10 @@ import { IUserReducer } from "../../reducers/userReducers";
 import { getSomeData, getUsers } from "../../actions/userActions";
 import { ISingleUser } from "../../entities/ISingleUser";
 
-const Wrapper = styled.div`
-  display: block;
-`;
-
 const ContentWrapper = styled.div`
   display: flex;
+  margin: 0 auto;
+  width: 70%;
 `;
 
 type GetUsers = ReturnType<typeof getUsers>;
@@ -33,29 +31,27 @@ export const MainWrapper: FC = () => {
 
   return (
     <Router>
-      <Wrapper>
-        <TopNav />
-        <ContentWrapper>
-          <LeftMenu />
-          <Switch>
-            <Route path="/" exact>
-              <MainPage />
-            </Route>
-            <Route path="/profile" exact>
-              <ProfilePage />
-            </Route>
-            <Route path="/entities" exact>
-              <EntitiesPage />
-            </Route>
-            <Route path="/workspace" exact>
-              <WorkspacePage />
-            </Route>
-            <Route path="/test" exact>
-              <TestPage />
-            </Route>
-          </Switch>
-        </ContentWrapper>
-      </Wrapper>
+      <TopNav />
+      <ContentWrapper>
+        <LeftMenu />
+        <Switch>
+          <Route path="/" exact>
+            <MainPage />
+          </Route>
+          <Route path="/profile" exact>
+            <ProfilePage />
+          </Route>
+          <Route path="/entities" exact>
+            <EntitiesPage />
+          </Route>
+          <Route path="/workspace" exact>
+            <WorkspacePage />
+          </Route>
+          <Route path="/test" exact>
+            <TestPage />
+          </Route>
+        </Switch>
+      </ContentWrapper>
     </Router>
   );
 };

@@ -12,6 +12,7 @@ const Container = styled.div`
 const WorkspacesWrapper = styled.div`
   display: flex;
   padding: 20px 0px;
+  width: 1125px;
   overflow: auto;
 `;
 
