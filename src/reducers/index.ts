@@ -3,12 +3,14 @@ import comments, { ICommentReducer } from './commentReducers';
 import users, { IUserReducer } from './userReducers';
 import posts, { IPostReducer } from './postReducers';
 import albums, { IAlbumReducer } from './albumReducers';
+import photos, { IPhotoReducer } from './photoReducers';
 
 export default combineReducers({
     users,
     comments,
     posts,
-    albums
+    albums,
+    photos
 })
 
 export interface IState {
@@ -16,4 +18,5 @@ export interface IState {
     comments: ICommentReducer
     posts: IPostReducer
     albums: IAlbumReducer
+    phoyos: IPhotoReducer
 }
