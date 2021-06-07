@@ -8,11 +8,13 @@ import EntitiesPage from "../EntitiesPage/EntitiesPage";
 import WorkspacePage from "../WorkspacePage/WorkspacePage";
 import TestPage from "../TestPage/TestPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { IState } from "../../reducers";
-import { IUserReducer } from "../../reducers/userReducers";
-import { getSomeData, getUsers } from "../../actions/userActions";
-import { ISingleUser } from "../../entities/ISingleUser";
+import { useDispatch } from "react-redux";
+import { getAlbums } from "../../actions/albumActions";
+import { getComments } from "../../actions/commentActions";
+import { getPhotos } from "../../actions/photoActions";
+import { getPosts } from "../../actions/postActions";
+import { getTodos } from "../../actions/todoActions";
+import { getUsers } from "../../actions/userActions";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -20,12 +22,22 @@ const ContentWrapper = styled.div`
   width: 70%;
 `;
 
+type GetAlbums = ReturnType<typeof getAlbums>;
+type GetComments = ReturnType<typeof getComments>;
+type GetPhotos = ReturnType<typeof getPhotos>;
+type GetPosts = ReturnType<typeof getPosts>;
+type GetTodos = ReturnType<typeof getTodos>;
 type GetUsers = ReturnType<typeof getUsers>;
 
 export const MainWrapper: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch<GetAlbums>(getAlbums());
+    dispatch<GetComments>(getComments());
+    dispatch<GetPhotos>(getPhotos());
+    dispatch<GetPosts>(getPosts());
+    dispatch<GetTodos>(getTodos());
     dispatch<GetUsers>(getUsers());
   }, []);
 
