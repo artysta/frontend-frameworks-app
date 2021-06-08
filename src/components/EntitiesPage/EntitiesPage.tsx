@@ -13,12 +13,15 @@ const Wrapper = styled.div`
 const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
-const Header = styled.span`
+const Header = styled.div`
   color: ${Colors.blue3};
-  font-size: 20px;
-  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
 `;
 
 const CardsWrapper = styled.div`
@@ -26,8 +29,6 @@ const CardsWrapper = styled.div`
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
   margin-top: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const Card = styled.div`
@@ -65,21 +66,78 @@ const Image = styled.img`
   border-radius: 5px;
 `;
 
-const Select = styled.select`
-  width: 200px;
-  padding: 10px;
-  border: 0;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
+const Select = styled.div`
+  padding: 10px 15px 10px 10px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: ${Colors.aqua1};
   color: ${Colors.blue3};
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const SelectBorder = styled(Select)`
+  border: 2px solid ${Colors.blue3};
+  background-color: ${Colors.white};
+  border-radius: 3px;
+`;
+
+const SelectLeft = styled(Select)`
+  margin: 0;
+  background-color: ${Colors.aqua1}
 `;
 
 const Icon = styled.img`
   width: 20px;
   margin: auto 10px;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
+
+const SmallIcon = styled.img`
+  width: 10px;
+  margin: auto 10px;
+`;
+
+const MosaicButton = styled.div`
+  padding: 10px 15px 10px 10px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: ${Colors.aqua1};
+  color: ${Colors.blue3};
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+`;
+
+const ListButton = styled.div`
+  padding: 10px 15px 10px 10px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: ${Colors.aqua1};
+  color: ${Colors.blue3};
+  display: flex;
+  justify-content: rioght;
+`;
+
+const VerticalLine = styled.div`
+  border-left: 1px solid ${Colors.gray2};
+  height: 30px;
+  margin: 0px 10px;
+`
+
+const Search = styled.input`
+  padding: 10px;
+  border: 1px solid ${Colors.gray2};
+  border-radius: 5px;
+  margin-left: auto;
+`
 
 function workspaces(): Workspace[] {
   let data: Repository<Workspace> = new FakeWorkspacesRepository();
@@ -91,11 +149,43 @@ export const EntitiesPage: FC = () => {
     <Wrapper>
       <HeaderWrapper>
         <Header>Entities</Header>
-        <Icon src="../media/icons/people.svg"></Icon>
-        <Select>
-          <option>Mosaic</option>
-          <option>List</option>
-        </Select>
+        <Icon src="../media/icons/settings2.svg"></Icon>
+        <MosaicButton>
+          <Icon src="../media/icons/mosaic.svg"></Icon>
+          Mosaic
+        </MosaicButton>
+        <ListButton>
+          <Icon src="../media/icons/list.svg"></Icon>
+        </ListButton>
+      </HeaderWrapper>
+      <HeaderWrapper>
+        <SelectLeft>
+          <Icon src="../media/icons/signal.svg"></Icon>
+          All
+          <SmallIcon src="../media/icons/arrow-down.svg"></SmallIcon>
+        </SelectLeft>
+        <Icon src="../media/icons/more.svg"></Icon>
+        <VerticalLine/>
+        <Icon src="../media/icons/sort.svg"></Icon>
+        <span>Sort</span>
+        <Icon src="../media/icons/filter.svg"></Icon>
+        <span>Filters</span>
+        <VerticalLine/>
+
+        <Icon src="../media/icons/expand.svg"></Icon>
+        <VerticalLine/>
+
+        <Icon src="../media/icons/share.svg"></Icon>
+        <span>Share</span>
+
+        <Search placeholder="Search..."></Search>
+        <VerticalLine/>
+
+        <SelectBorder>
+          <Icon src="../media/icons/signal.svg"></Icon>
+          Followed
+          <SmallIcon src="../media/icons/arrow-down.svg"></SmallIcon>
+        </SelectBorder>
       </HeaderWrapper>
       <CardsWrapper>
         {workspaces().map((w, i) => (
