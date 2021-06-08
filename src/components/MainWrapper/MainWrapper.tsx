@@ -20,6 +20,8 @@ const ContentWrapper = styled.div`
   display: flex;
   margin: 0 auto;
   width: 70%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 type GetAlbums = ReturnType<typeof getAlbums>;
