@@ -30,6 +30,10 @@ const CardsWrapper = styled.div`
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
   margin-top: 20px;
+
+  &.list {
+    display: block;
+  }
 `;
 
 const Card = styled.div`
@@ -115,6 +119,13 @@ const MosaicButton = styled.div`
   display: flex;
   justify-content: center;
   margin-left: auto;
+  transition: 0.1s;
+
+  :hover {
+    cursor: pointer;
+    background-color: ${Colors.gray3};
+    transition: 0.1s;
+  }
 `;
 
 const ListButton = styled.div`
@@ -124,7 +135,14 @@ const ListButton = styled.div`
   background-color: ${Colors.aqua1};
   color: ${Colors.blue3};
   display: flex;
-  justify-content: rioght;
+  justify-content: right;
+  transition: 0.1s;
+
+  :hover {
+    cursor: pointer;
+    background-color: ${Colors.gray3};
+    transition: 0.1s;
+  }
 `;
 
 const VerticalLine = styled.div`
@@ -157,10 +175,23 @@ const FiltersContainer = styled.div`
 
 export const EntitiesPage: FC = () => {
   const [filters, setFilters] = useState(false);
+  const [list, setList] = useState(false);
 
   const showFilters = () => {
     setFilters(function changeValue(value) {
       return !value;
+    });
+  };
+
+  const useList = () => {
+    setList(function changeValue() {
+      return true;
+    });
+  };
+
+  const useMosaic = () => {
+    setList(function changeValue() {
+      return false;
     });
   };
 
@@ -169,12 +200,12 @@ export const EntitiesPage: FC = () => {
       <HeaderWrapper>
         <Header>Entities</Header>
         <Icon src="../media/icons/settings2.svg"></Icon>
-        <MosaicButton>
+        <MosaicButton onClick={useMosaic}>
           <Icon src="../media/icons/mosaic.svg"></Icon>
           Mosaic
         </MosaicButton>
         <ListButton>
-          <Icon src="../media/icons/list.svg"></Icon>
+          <Icon onClick={useList} src="../media/icons/list.svg"></Icon>
         </ListButton>
       </HeaderWrapper>
       <HeaderWrapper>
@@ -205,7 +236,7 @@ export const EntitiesPage: FC = () => {
       <FiltersContainer className={filters ? "open" : ""}>
         {filters && <Filters />}
       </FiltersContainer>
-      <CardsWrapper>
+      <CardsWrapper className={list ? "list" : ""}>
         {workspaces().map((w, i) => (
           <Card>
             <Image src="./placeholder350.png" />
