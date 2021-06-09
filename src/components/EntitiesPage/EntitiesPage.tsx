@@ -1,9 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
 import { Workspace } from "../../entities/Workspace";
 import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepository";
 import { Repository } from "../../repositories/Repository";
+import { Filters } from "../Filters/Filters";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -74,7 +75,7 @@ const Select = styled.div`
   color: ${Colors.blue3};
   display: flex;
   justify-content: center;
-  
+
   :hover {
     cursor: pointer;
   }
@@ -88,7 +89,7 @@ const SelectBorder = styled(Select)`
 
 const SelectLeft = styled(Select)`
   margin: 0;
-  background-color: ${Colors.aqua1}
+  background-color: ${Colors.aqua1};
 `;
 
 const Icon = styled.img`
@@ -130,21 +131,39 @@ const VerticalLine = styled.div`
   border-left: 1px solid ${Colors.gray2};
   height: 30px;
   margin: 0px 10px;
-`
+`;
 
 const Search = styled.input`
   padding: 10px;
   border: 1px solid ${Colors.gray2};
   border-radius: 5px;
   margin-left: auto;
-`
+`;
 
 function workspaces(): Workspace[] {
   let data: Repository<Workspace> = new FakeWorkspacesRepository();
   return data.getAll();
 }
 
+const FiltersContainer = styled.div`
+  max-height: 0;
+  transition: 0.1s;
+
+  &.open {
+    transition: 0.1s;
+    max-height: 230px;
+  }
+`;
+
 export const EntitiesPage: FC = () => {
+  const [filters, setFilters] = useState(false);
+
+  const showFilters = () => {
+    setFilters(function changeValue(value) {
+      return !value;
+    });
+  };
+
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -165,28 +184,27 @@ export const EntitiesPage: FC = () => {
           <SmallIcon src="../media/icons/arrow-down.svg"></SmallIcon>
         </SelectLeft>
         <Icon src="../media/icons/more.svg"></Icon>
-        <VerticalLine/>
+        <VerticalLine />
         <Icon src="../media/icons/sort.svg"></Icon>
         <span>Sort</span>
-        <Icon src="../media/icons/filter.svg"></Icon>
+        <Icon onClick={showFilters} src="../media/icons/filter.svg"></Icon>
         <span>Filters</span>
-        <VerticalLine/>
-
+        <VerticalLine />
         <Icon src="../media/icons/expand.svg"></Icon>
-        <VerticalLine/>
-
+        <VerticalLine />
         <Icon src="../media/icons/share.svg"></Icon>
         <span>Share</span>
-
         <Search placeholder="Search..."></Search>
-        <VerticalLine/>
-
+        <VerticalLine />
         <SelectBorder>
           <Icon src="../media/icons/signal.svg"></Icon>
           Followed
           <SmallIcon src="../media/icons/arrow-down.svg"></SmallIcon>
         </SelectBorder>
       </HeaderWrapper>
+      <FiltersContainer className={filters ? "open" : ""}>
+        {filters && <Filters />}
+      </FiltersContainer>
       <CardsWrapper>
         {workspaces().map((w, i) => (
           <Card>
