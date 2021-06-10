@@ -14,6 +14,7 @@ const Panel = styled.div`
   width: 270px;
   display: block;
   text-align: center;
+  background-color: ${Colors.white};
   box-shadow: 0px 1px 3px ${Colors.gray2};
 `;
 

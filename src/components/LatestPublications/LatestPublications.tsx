@@ -10,6 +10,7 @@ const LatestPublicationsWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 0px 1px 3px ${Colors.gray2};
   margin: 20px 0px;
+  background-color: ${Colors.white};
 `;
 
 const LatestPublicationFeatured = styled.div`

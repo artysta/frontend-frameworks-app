@@ -19,7 +19,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const Header = styled.div`
-  color: ${Colors.blue3};
+  color: ${Colors.blue1};
   display: flex;
   justify-content: center;
   font-size: 22px;
@@ -30,6 +30,7 @@ const CardsWrapper = styled.div`
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
   margin-top: 20px;
+  background-color: ${Colors.white};
 
   &.list {
     display: block;
@@ -48,7 +49,7 @@ const Card = styled.div`
 `;
 
 const Title = styled.p`
-  color: ${Colors.blue3};
+  color: ${Colors.blue6};
   font-size: 20px;
 `;
 
@@ -57,6 +58,7 @@ const CardDetails = styled.div`
   position: relative;
   padding: 10px;
   width: 100%;
+  color: ${Colors.gray1};
 `;
 
 const CardFooter = styled.div`
@@ -86,14 +88,14 @@ const Select = styled.div`
 `;
 
 const SelectBorder = styled(Select)`
-  border: 2px solid ${Colors.blue3};
+  border: 2px solid ${Colors.blue6};
   background-color: ${Colors.white};
   border-radius: 3px;
 `;
 
 const SelectLeft = styled(Select)`
   margin: 0;
-  background-color: ${Colors.aqua1};
+  background-color: ${Colors.blue4};
 `;
 
 const Icon = styled.img`
@@ -114,7 +116,7 @@ const MosaicButton = styled.div`
   padding: 10px 15px 10px 10px;
   border: 0px;
   border-radius: 3px;
-  background-color: ${Colors.aqua1};
+  background-color: ${Colors.blue4};
   color: ${Colors.blue3};
   display: flex;
   justify-content: center;
@@ -132,7 +134,7 @@ const ListButton = styled.div`
   padding: 10px 15px 10px 10px;
   border: 0px;
   border-radius: 3px;
-  background-color: ${Colors.aqua1};
+  background-color: ${Colors.blue4};
   color: ${Colors.blue3};
   display: flex;
   justify-content: right;
@@ -140,7 +142,7 @@ const ListButton = styled.div`
 
   :hover {
     cursor: pointer;
-    background-color: ${Colors.gray3};
+    background-color: ${Colors.gray4};
     transition: 0.1s;
   }
 `;

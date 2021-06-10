@@ -13,6 +13,7 @@ const YourWorkCard = styled.div`
   box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
   margin: 20px 0px;
+  background-color: ${Colors.white};
 
   div {
     display: block;

@@ -1,12 +1,15 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { Colors } from "../../styledHelpers/Colors"
 
 const Wrapper = styled.div`
   display: flex;
+  margin-bottom: 20px;
 `;
 
 const UserPhoto = styled.div`
   text-align: center;
+  color: ${Colors.aqua2};
 
   img {
     width: 100px;

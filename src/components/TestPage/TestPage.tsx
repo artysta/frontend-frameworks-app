@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   width: 100%;
   box-shadow: 0px 1px 3px ${Colors.gray2};
+  background-color: ${Colors.white};
   justify-content: center;
   display: flex;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
