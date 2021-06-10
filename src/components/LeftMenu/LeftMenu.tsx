@@ -57,8 +57,8 @@ const UserJobTitle = styled.p`
 `;
 
 const Line = styled.hr`
-  background-color: ${Colors.blue3};
-  color: ${Colors.blue3};
+  background-color: ${Colors.gray3};
+  color: ${Colors.gray3};
   width: 95%;
   height: 1px;
   border-width: 0px;
@@ -69,10 +69,12 @@ const MenuIcon = styled.img`
 `;
 
 const UserMenuIcon = styled.img`
-  border: 1px solid ${Colors.black};
+  border: 1px solid ${Colors.gray1};
   padding: 5px 15px;
   border-radius: 5px;
   margin: 10px;
+  margin-left: auto;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
 `;
 
 export const LeftMenu: FC = () => {
@@ -90,12 +92,12 @@ export const LeftMenu: FC = () => {
             <li>
               <MenuIcon src="./media/icons/network.png" />
               <Link to="/test">Your Network</Link>
-              <UserMenuIcon src="./media/icons/user-plus.png" />
+              <UserMenuIcon src="./media/icons/user-plus.svg" />
             </li>
             <li>
-              <MenuIcon src="./media/icons/publications.png" />
+              <MenuIcon src="./media/icons/publications.svg" />
               <Link to="/test">Your Publications</Link>
-              <UserMenuIcon src="./media/icons/plus.png" />
+              <UserMenuIcon src="./media/icons/plus.svg" />
             </li>
           </ul>
         </MenuOptionsWrapper>
@@ -103,15 +105,15 @@ export const LeftMenu: FC = () => {
       <MenuOptionsWrapper>
         <ul>
           <li>
-            <MenuIcon src="./media/icons/publications.png" />
+            <MenuIcon src="./media/icons/publications.svg" />
             <Link to="/test">Publications</Link>
           </li>
           <li>
-            <MenuIcon src="./media/icons/ecosystem.png" />
+            <MenuIcon src="./media/icons/ecosystem.svg" />
             <Link to="/test">Ecosystem</Link>
           </li>
           <li>
-            <MenuIcon src="./media/icons/entities.png" />
+            <MenuIcon src="./media/icons/entities.svg" />
             <Link to="/entities">Entities</Link>
           </li>
         </ul>
