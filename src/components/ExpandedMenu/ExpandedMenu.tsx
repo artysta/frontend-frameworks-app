@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   border: solid ${Colors.gray2};
   box-shadow: 0px 1px 3px ${Colors.gray2};
   border-width: 0 1px 1px 1px;
-  margin: 25px 0 0 0;
+  margin: 60px 0 0 0;
   width: 300px;
   z-index: 99;
 
@@ -61,18 +61,17 @@ const AccountOptionsWrapper = styled.div`
 
 const LogoutButtonWrapper = styled.span`
   position: relative;
+  display: flex;
+  align-items: center;
 
   img {
-    position: absolute;
-    margin-top: 23px;
-    margin-left: 90px;
+    margin-left: 70px;
+    padding: 20px 0px 20px 20px;
   }
 `;
 
 const LogoutButton = styled.span`
-  display: flex;
   justify-content: center;
-  padding: 20px;
 `;
 
 export const ExpandedMenu: FC = () => {
