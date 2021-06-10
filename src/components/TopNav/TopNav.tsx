@@ -22,29 +22,29 @@ const Logo = styled.img`
   margin: 10px;
 `;
 
-const HomeIcon = styled.img`
+const SmallIcon = styled.img`
   margin: 10px;
 `;
 
+const MenuArrowIcon = styled.img`
+  margin: 10px;
+  margin-left: 185px;
+`;
+
 const NavMenu = styled.p`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
+
+const NavMenuContainer = styled.div`
   color: ${Colors.black};
   font-size: 20px;
-  transition: 0.5s;
-  cursor: pointer;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-  span {
-    transition: 0.5s;
-
-    :hover {
-      color: ${Colors.blue3};
-      transition: 0.5s;
-    }
-  }
-
-  a {
+    a {
     text-decoration: none;
     color: ${Colors.black};
     transition: 0.2s;
@@ -54,32 +54,32 @@ const NavMenu = styled.p`
       transition: 0.2s;
     }
   }
-`;
+`
+
+const SearchBoxContainer = styled.div`
+  margin: auto;
+  border: 1px solid ${Colors.gray2};
+  border-radius: 5px;
+  padding: 10px;
+  width: 30%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+`
 
 const SearchBoxInput = styled.input`
-  border: 1px solid ${Colors.gray2};
-  border-bottom: 3px solid ${Colors.gray2};
-  border-radius: 5px;
-  display: block;
-  margin: auto;
-  padding: 15px;
+  border: 0;
   text-align: center;
-  width: 20%;
+  width: 100%;
   outline: none;
-  transition: 0.5s;
-
-  :focus {
-    border: 1px solid ${Colors.blue3};
-    border-bottom: 3px solid ${Colors.blue3};
-    border-radius: 5px;
-    transition: 0.5s;
-  }
+  font-size: 18px;
+  color: ${Colors.gray1};
 `;
 
 const Icon = styled.img`
   margin: 10px;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
 
   :hover {
     cursor: pointer;
@@ -104,8 +104,14 @@ const IconCounter = styled.span`
   border-radius: 40%;
   width: 7px;
   height: 2px;
-  margin: -10px 0 0 40px;
+  margin: -10px 0 0 30px;
 `;
+
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+`
 
 export const TopNav: FC = () => {
   const [
@@ -115,19 +121,26 @@ export const TopNav: FC = () => {
     closeDropdown,
   ] = useDropdown();
 
-  return (
+  return (  
     <NavWrapper>
       <Link to="/test">
         <Logo src="./logo192.png" />
       </Link>
-      <HomeIcon src="./media/icons/house.png" />
-      <NavMenu ref={wrapperRef}>
+      <NavMenuContainer ref={wrapperRef}>
+      {dropdownOpen && <>{<ExpandedMenu />}</>}
+      <NavMenu>
+      <SmallIcon src="./media/icons/house.png" />
         <div onClick={toggleDropdown}>
           <span>Menu</span>
         </div>
-        {dropdownOpen && <>{<ExpandedMenu />}</>}
+      <MenuArrowIcon src="./media/icons/arrow-down.svg" />
       </NavMenu>
-      <SearchBoxInput placeholder="Search..." />
+      </NavMenuContainer>
+      <SearchBoxContainer>
+      <SearchBoxInput placeholder="Search Legalcluster" />
+      <SmallIcon src="./media/icons/search.svg" />
+      </SearchBoxContainer>
+      <IconsContainer>
       <Link to="/test">
         <Icon src="./media/icons/house.svg" />
       </Link>
@@ -143,6 +156,7 @@ export const TopNav: FC = () => {
           <Icon src="./media/icons/bell.svg" />
         </IconContainer>
       </Link>
+      </IconsContainer>
     </NavWrapper>
   );
 };
