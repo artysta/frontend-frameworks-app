@@ -12,5 +12,18 @@ export const Colors = {
     blue5: '#f5f7f9',
     blue6: '#2a3f9d',
     aqua1: '#e6f0f3',
-    aqua2: '#549bae'
+    aqua2: '#549bae',
+
+    btnBlue1: '#eaecf5',
+    btnBlue2: '#3347a1',
+    btnGreen1: '#cce5cc',
+    btnGreen2: '#339933',
+    btnAqua1: '#edf6fa',
+    btnAqua2: '#2e97c9',
+    btnYellow1: '#f2e5c4',
+    btnYellow2: '#d7ab41',
+    btnGray1: '#cccccc',
+    btnGray2: '#474f64',
+    btnGray3: '#e8e8e8',
+    btnGray4: '#767c8b',
 }
