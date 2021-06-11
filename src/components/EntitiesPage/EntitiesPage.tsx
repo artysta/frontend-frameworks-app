@@ -5,6 +5,9 @@ import { Workspace } from "../../entities/Workspace";
 import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepository";
 import { Repository } from "../../repositories/Repository";
 import { Filters } from "../Filters/Filters";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
+import { ITodoReducer } from "../../reducers/todoReducers";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,7 +33,6 @@ const CardsWrapper = styled.div`
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
   margin-top: 20px;
-  background-color: ${Colors.white};
 
   &.list {
     display: block;
@@ -42,6 +44,7 @@ const Card = styled.div`
   box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
   border-radius: 5px;
+  background-color: ${Colors.white};
 
   div {
     display: block;
@@ -176,6 +179,10 @@ const FiltersContainer = styled.div`
 `;
 
 export const EntitiesPage: FC = () => {
+  const todos = useSelector<IState, ITodoReducer>((state) => ({
+    ...state.todos,
+  }));
+
   const [filters, setFilters] = useState(false);
   const [list, setList] = useState(false);
 
@@ -239,15 +246,15 @@ export const EntitiesPage: FC = () => {
         {filters && <Filters />}
       </FiltersContainer>
       <CardsWrapper className={list ? "list" : ""}>
-        {workspaces().map((w, i) => (
+        {todos.todosList.slice(0, 30).map((todo, index) => (
           <Card>
-            <Image src="./placeholder350.png" />
+            <Image
+              src={"/media/photos/publication-photo-" + (index % 4) + ".jpg"}
+            />
             <CardDetails>
-              <Title>{w.title}</Title>
+              <Title>{todo.title.slice(0, 40)}</Title>
               <CardFooter>
-                <p>
-                  {w.type} &bull; {w.numberOfUsers} &bull; {w.lastUpdated}
-                </p>
+                <span>Caracas 1050, Distrito Capital, Venezuela</span>
               </CardFooter>
             </CardDetails>
           </Card>
