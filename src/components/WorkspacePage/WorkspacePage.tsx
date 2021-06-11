@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
+import { ICommentReducer } from "../../reducers/commentReducers";
 import { IUserReducer } from "../../reducers/userReducers";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
-import { IPostReducer } from "../../reducers/postReducers";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -54,61 +54,9 @@ const WorkspaceCard = styled.div`
   }
 `;
 
-const Title = styled.p`
-  color: ${Colors.blue1};
-  font-size: 20px;
-`;
-
 const WorkspaceItemsWrapper = styled.div`
   display: flex;
   margin-bottom: 15px;
-`;
-
-const Elements = styled.div`
-  display: flex;
-  margin-left: auto;
-`;
-
-const CardDetails = styled.div`
-  display: table-cell;
-  position: relative;
-  padding: 10px;
-  width: 100%;
-`;
-
-const FilterWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-
-  input {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid ${Colors.gray2};
-    border-radius: 5px;
-    outline: none;
-    margin-right: 10px;
-  }
-`;
-
-const SelectWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-
-  select {
-    width: 200px;
-    padding: 10px;
-    border: 0;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    color: ${Colors.blue3};
-  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -154,9 +102,89 @@ const InfoCardIcon = styled.img`
   margin: 20px;
 `;
 
+const ResumeYourWorkWrapper = styled.div`
+  color: ${Colors.blue1};
+`;
+
+const YourWorkCard = styled.div`
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 0px 1px 3px ${Colors.gray2};
+  padding: 20px;
+  margin: 20px 0px;
+  background-color: ${Colors.white};
+`;
+
+const Title = styled.p`
+  color: ${Colors.blue1};
+  font-size: 20px;
+`;
+
+const CardTitle = styled.p`
+  color: ${Colors.blue2};
+  font-size: 20px;
+`;
+
+const ResumeYourWorkItemsWrapper = styled.div`
+  display: flex;
+`;
+
+const Elements = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+const CardDetails = styled.div``;
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.img`
+  width: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid ${Colors.gray2};
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px;
+  }
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    width: 200px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    color: ${Colors.blue3};
+  }
+`;
+
 export const ResumeYourWork: FC = () => {
-  const posts = useSelector<IState, IPostReducer>((state) => ({
-    ...state.posts,
+  const comments = useSelector<IState, ICommentReducer>((state) => ({
+    ...state.comments,
   }));
 
   const users = useSelector<IState, IUserReducer>((state) => ({
@@ -255,16 +283,23 @@ export const ResumeYourWork: FC = () => {
           ...
         </Button>
       </ButtonsContainer>
-      {posts.postsList.map((post) => (
-        <WorkspaceCard>
+      {comments.commentsList.map((comment) => (
+        <YourWorkCard>
           <CardDetails>
-            <Title>{post.title}</Title>
-            <p>{post.body}</p>
-            <p>
-              {users.userList.find((user) => user.id === post.userId)?.email}
-            </p>
+            <CardTitle>{comment.name}</CardTitle>
+            <br />
+            <p>{comment.body}</p>
+            <br />
+            <UserInfo>
+              <Icon src={"./media/icons/people.svg"} />
+              {users.userList.find((user) => user.id === comment.postId)?.name}
+              {" "}&#8226;
+              <Icon src={"./media/icons/house.svg"} />
+              Corporate &#8226; Updated 3 days ago by{" "}
+              {users.userList.find((user) => user.id === comment.postId)?.name}
+            </UserInfo>
           </CardDetails>
-        </WorkspaceCard>
+        </YourWorkCard>
       ))}
     </Wrapper>
   );

@@ -1,11 +1,14 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { FakeWorksRepository } from "../../repositories/FakeWorksRepository";
-import { Repository } from "../../repositories/Repository";
-import { Work } from "../../entities/Work";
 import { Colors } from "../../styledHelpers/Colors";
+import { ICommentReducer } from "../../reducers/commentReducers";
+import { IUserReducer } from "../../reducers/userReducers";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
 
-const ResumeYourWorkWrapper = styled.div``;
+const ResumeYourWorkWrapper = styled.div`
+  color: ${Colors.blue1};
+`;
 
 const YourWorkCard = styled.div`
   border-radius: 5px;
@@ -14,14 +17,15 @@ const YourWorkCard = styled.div`
   padding: 20px;
   margin: 20px 0px;
   background-color: ${Colors.white};
-
-  div {
-    display: block;
-  }
 `;
 
 const Title = styled.p`
-  color: ${Colors.blue3};
+  color: ${Colors.blue1};
+  font-size: 20px;
+`;
+
+const CardTitle = styled.p`
+  color: ${Colors.blue2};
   font-size: 20px;
 `;
 
@@ -34,11 +38,17 @@ const Elements = styled.div`
   margin-left: auto;
 `;
 
-const CardDetails = styled.div`
-  display: table-cell;
-  position: relative;
-  padding: 10px;
-  width: 100%;
+const CardDetails = styled.div``;
+
+const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.img`
+  width: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
 `;
 
 const FilterWrapper = styled.div`
@@ -76,12 +86,15 @@ const SelectWrapper = styled.div`
   }
 `;
 
-function works(): Work[] {
-  let data: Repository<Work> = new FakeWorksRepository();
-  return data.getAll();
-}
-
 export const ResumeYourWork: FC = () => {
+  const comments = useSelector<IState, ICommentReducer>((state) => ({
+    ...state.comments,
+  }));
+
+  const users = useSelector<IState, IUserReducer>((state) => ({
+    ...state.users,
+  }));
+
   return (
     <ResumeYourWorkWrapper>
       <ResumeYourWorkItemsWrapper>
@@ -97,14 +110,21 @@ export const ResumeYourWork: FC = () => {
           </SelectWrapper>
         </Elements>
       </ResumeYourWorkItemsWrapper>
-      {works().map((w, i) => (
+      {comments.commentsList.map((comment) => (
         <YourWorkCard>
           <CardDetails>
-            <Title>{w.title}</Title>
-            <p>{w.contents}</p>
-            <p>
-              {w.type} &bull; {w.lastUpdated}
-            </p>
+            <CardTitle>{comment.name}</CardTitle>
+            <br />
+            <p>{comment.body}</p>
+            <br />
+            <UserInfo>
+              <Icon src={"./media/icons/people.svg"} />
+              {users.userList.find((user) => user.id === comment.postId)?.name}
+              {" "}&#8226;
+              <Icon src={"./media/icons/house.svg"} />
+              Corporate &#8226; Updated 3 days ago by{" "}
+              {users.userList.find((user) => user.id === comment.postId)?.name}
+            </UserInfo>
           </CardDetails>
         </YourWorkCard>
       ))}
