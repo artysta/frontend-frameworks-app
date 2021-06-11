@@ -2,10 +2,14 @@ import { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
 import { Link } from "react-router-dom";
+import { IUserReducer } from "../../reducers/userReducers";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
 
 const LeftMenuWrapper = styled.div`
   display: block;
   margin: 20px;
+  color: ${Colors.blue3};
 `;
 
 const Panel = styled.div`
@@ -41,19 +45,23 @@ const MenuOptionsWrapper = styled.div`
   }
 `;
 
+const UserInfoContainer = styled.div`
+
+`
+
 const UserImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 75px;
   margin: 10px;
+  border-radius: 50%;
 `;
 
-const UserName = styled.p`
-  color: ${Colors.blue3};
+const UserName = styled.span`
+  color: ${Colors.blue2};
   font-size: 20px;
 `;
 
 const UserJobTitle = styled.p`
-  color: ${Colors.gray2};
+  color: ${Colors.gray1};
   font-size: 15px;
 `;
 
@@ -79,13 +87,19 @@ const UserMenuIcon = styled.img`
 `;
 
 export const LeftMenu: FC = () => {
+  const users = useSelector<IState, IUserReducer>((state) => ({
+    ...state.users,
+  }));
+  
   return (
     <LeftMenuWrapper>
       <Panel>
-        <UserImage src="./logo192.png" />
-        <Link to="/profile">
-          <UserName>Lorem ipsum</UserName>
-          <UserJobTitle>Job title - Company</UserJobTitle>
+        <UserImage src="./media/photos/profile-photo.png" />
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
+          <UserInfoContainer>
+          <UserName>{users.userList[0]?.name}</UserName>
+          <UserJobTitle>{users.userList[0]?.company.name}</UserJobTitle>
+          </UserInfoContainer>
         </Link>
         <Line />
         <MenuOptionsWrapper>
