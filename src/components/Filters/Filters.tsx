@@ -1,13 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
-import { Link } from "react-router-dom";
 
 const Card = styled.div`
   display: block;
   box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
   border-radius: 5px;
+  background-color: ${Colors.white};
 
   p {
     color: ${Colors.gray1};
