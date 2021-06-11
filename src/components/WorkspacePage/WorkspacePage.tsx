@@ -15,7 +15,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const HeaderPhoto = styled.div`
-  background-image: url("./placeholder350.png");
+  background-image: url("./media/photos/card-background-photo-0.jpg");
   border-radius: 5px 5px 0 0;
   height: 300px;
 `;
