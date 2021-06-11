@@ -6,12 +6,8 @@ import ResumeYourWork from "../ResumeYourWork/ResumeYourWork";
 import { Workspaces } from "../Workspaces/Workspaces";
 
 const Wrapper = styled.div`
-  margin: 20px;
-  border-radius: 5px;
   width: 100%;
   display: block;
-  box-shadow: 0px 1px 3px ${Colors.gray2};
-  padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
