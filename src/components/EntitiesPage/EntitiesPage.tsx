@@ -8,6 +8,8 @@ import { Filters } from "../Filters/Filters";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
 import { ITodoReducer } from "../../reducers/todoReducers";
+import ReactPaginate from "react-paginate";
+import { PaginationContainer } from "../../styledHelpers/Components";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -43,6 +45,7 @@ const Card = styled.div`
   display: flex;
   box-shadow: 0px 1px 3px ${Colors.gray2};
   padding: 20px;
+  margin: 3px 0;
   border-radius: 5px;
   background-color: ${Colors.white};
 
@@ -163,11 +166,6 @@ const Search = styled.input`
   margin-left: auto;
 `;
 
-function workspaces(): Workspace[] {
-  let data: Repository<Workspace> = new FakeWorkspacesRepository();
-  return data.getAll();
-}
-
 const FiltersContainer = styled.div`
   max-height: 0;
   transition: 0.1s;
@@ -203,6 +201,14 @@ export const EntitiesPage: FC = () => {
       return false;
     });
   };
+
+  const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const handlePageChange = (data: any) => {
+    const selected = data.selected;
+    setCurrentPage(selected);
+  };
+
 
   return (
     <Wrapper>
@@ -246,7 +252,7 @@ export const EntitiesPage: FC = () => {
         {filters && <Filters />}
       </FiltersContainer>
       <CardsWrapper className={list ? "list" : ""}>
-        {todos.todosList.slice(0, 30).map((todo, index) => (
+        {todos.todosList.slice(currentPage, currentPage + 30).map((todo, index) => (
           <Card>
             <Image
               src={"/media/photos/publication-photo-" + (index % 4) + ".jpg"}
@@ -260,6 +266,20 @@ export const EntitiesPage: FC = () => {
           </Card>
         ))}
       </CardsWrapper>
+      <PaginationContainer>
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={todos.todosList.length}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={3}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+      </PaginationContainer>
     </Wrapper>
   );
 };

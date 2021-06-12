@@ -1,10 +1,12 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
 import { ICommentReducer } from "../../reducers/commentReducers";
 import { IUserReducer } from "../../reducers/userReducers";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
+import ReactPaginate from "react-paginate";
+import { PaginationContainer } from "../../styledHelpers/Components";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -191,6 +193,13 @@ export const ResumeYourWork: FC = () => {
     ...state.users,
   }));
 
+  const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const handlePageChange = (data: any) => {
+    const selected = data.selected;
+    setCurrentPage(selected);
+  };
+
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -283,24 +292,46 @@ export const ResumeYourWork: FC = () => {
           ...
         </Button>
       </ButtonsContainer>
-      {comments.commentsList.map((comment) => (
-        <YourWorkCard>
-          <CardDetails>
-            <CardTitle>{comment.name}</CardTitle>
-            <br />
-            <p>{comment.body}</p>
-            <br />
-            <UserInfo>
-              <Icon src={"./media/icons/people.svg"} />
-              {users.userList.find((user) => user.id === comment.postId)?.name}
-              {" "}&#8226;
-              <Icon src={"./media/icons/house.svg"} />
-              Corporate &#8226; Updated 3 days ago by{" "}
-              {users.userList.find((user) => user.id === comment.postId)?.name}
-            </UserInfo>
-          </CardDetails>
-        </YourWorkCard>
-      ))}
+      {comments.commentsList
+        .slice(currentPage, currentPage + 8)
+        .map((comment) => (
+          <YourWorkCard>
+            <CardDetails>
+              <CardTitle>{comment.name}</CardTitle>
+              <br />
+              <p>{comment.body}</p>
+              <br />
+              <UserInfo>
+                <Icon src={"./media/icons/people.svg"} />
+                {
+                  users.userList.find((user) => user.id === comment.postId)
+                    ?.name
+                }{" "}
+                &#8226;
+                <Icon src={"./media/icons/house.svg"} />
+                Corporate &#8226; Updated 3 days ago by{" "}
+                {
+                  users.userList.find((user) => user.id === comment.postId)
+                    ?.name
+                }
+              </UserInfo>
+            </CardDetails>
+          </YourWorkCard>
+        ))}
+      <PaginationContainer>
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={comments.commentsList.length}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={9}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+      </PaginationContainer>
     </Wrapper>
   );
 };
