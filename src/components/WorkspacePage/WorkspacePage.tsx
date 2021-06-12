@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
 import { ICommentReducer } from "../../reducers/commentReducers";
 import { IUserReducer } from "../../reducers/userReducers";
+import { ITodoReducer } from "../../reducers/todoReducers";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
 import ReactPaginate from "react-paginate";
@@ -189,6 +190,10 @@ export const ResumeYourWork: FC = () => {
     ...state.comments,
   }));
 
+  const todos = useSelector<IState, ITodoReducer>((state) => ({
+    ...state.todos,
+  }));
+
   const users = useSelector<IState, IUserReducer>((state) => ({
     ...state.users,
   }));
@@ -200,6 +205,12 @@ export const ResumeYourWork: FC = () => {
     setCurrentPage(selected);
   };
 
+  function getIdParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(typeof(urlParams.get('id')));
+    return urlParams.get('id');
+  }
+
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -207,7 +218,7 @@ export const ResumeYourWork: FC = () => {
         <Header>
           <HeaderIcon src="./media/icons/entities.svg" />
           <HeaderDetails>
-            <HeaderTitle>Corporate Holdings</HeaderTitle>
+            <HeaderTitle>{todos.todosList.find((todo) => String(todo.id) == getIdParam())?.title}</HeaderTitle>
             <p>
               sunt aut facere repellat provident occaecati excepturi optio
               reprehenderit quia et suscipit suscipit recusandae consequuntur

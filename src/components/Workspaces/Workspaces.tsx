@@ -4,6 +4,7 @@ import { Colors } from "../../styledHelpers/Colors";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
 import { ITodoReducer } from "../../reducers/todoReducers";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   margin-bottom: 20px;
@@ -101,7 +102,12 @@ export const Workspaces: FC = () => {
             <CategoryCard>
               <CategoryIcon src="./media/icons/ecosystem.svg" />
             </CategoryCard>
-            <CardTitle>{todo.title}</CardTitle>
+            <Link
+              to={"/workspace?id=" + todo.id}
+              style={{ textDecoration: "none" }}
+            >
+              <CardTitle>{todo.title}</CardTitle>
+            </Link>
             <CardDetails>
               <Icon src="./media/icons/ecosystem.svg" />
               Contract &#8226;
