@@ -12,7 +12,9 @@ const UserPhoto = styled.div`
   color: ${Colors.aqua2};
 
   img {
+    margin: 10px;
     width: 100px;
+    border-radius: 50%
   }
 `;
 
@@ -30,7 +32,7 @@ export const Profile: FC = () => {
   return (
     <Wrapper>
       <UserPhoto>
-        <img src="logo192.png" alt="User photo" />
+        <img src="./media/photos/profile-photo.png" alt="User photo" />
         <p>See profile</p>
       </UserPhoto>
       <UserInformation>
