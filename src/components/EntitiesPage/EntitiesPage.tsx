@@ -12,6 +12,19 @@ import { PaginationContainer } from "../../styledHelpers/Components";
 const Wrapper = styled.div`
   width: 100%;
   margin: 20px;
+  transition: 0.2s;
+
+  &.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin: 0;
+    overflow: auto;
+    height: 100%;
+    background-color: ${Colors.white};
+    transition: 0.2s;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -184,6 +197,7 @@ export const EntitiesPage: FC = () => {
   const [sort, setSort] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [phrase, setFilterPhrase] = useState("");
+  const [expanded, setExpanded] = useState(false);
 
   const showFilters = () => {
     setFilters(function changeValue(value) {
@@ -227,8 +241,14 @@ export const EntitiesPage: FC = () => {
     });
   };
 
+  const expandView = () => {
+    setExpanded(function changeValue(oldValue) {
+      return !oldValue;
+    });
+  }
+
   return (
-    <Wrapper>
+    <Wrapper className={expanded ? "expanded" : ""}>
       <HeaderWrapper>
         <Header>Entities</Header>
         <Icon src="../media/icons/settings2.svg"></Icon>
@@ -253,7 +273,7 @@ export const EntitiesPage: FC = () => {
         <Icon onClick={showFilters} src="../media/icons/filter.svg"></Icon>
         <span>Filters</span>
         <VerticalLine />
-        <Icon src="../media/icons/expand.svg"></Icon>
+        <Icon src="../media/icons/expand.svg" onClick={expandView}></Icon>
         <VerticalLine />
         <Icon src="../media/icons/share.svg"></Icon>
         <span>Share</span>
