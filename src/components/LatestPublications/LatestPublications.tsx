@@ -4,6 +4,10 @@ import { Publication } from "../../entities/Publication";
 import { FakePublicaitonsRepository } from "../../repositories/FakePublicationsRepository";
 import { Repository } from "../../repositories/Repository";
 import { Colors } from "../../styledHelpers/Colors";
+import { IPostReducer } from "../../reducers/postReducers";
+import { IUserReducer } from "../../reducers/userReducers";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
 
 const LatestPublicationsWrapper = styled.div`
   display: flex;
@@ -15,12 +19,16 @@ const LatestPublicationsWrapper = styled.div`
 
 const LatestPublicationFeatured = styled.div`
   position: relative;
-  background-image: url("./placeholder350.png");
-  background-size: auto;
+  background-image: url("./media/photos/publication-photo-3.jpg");
   background-repeat: no-repeat;
-  background-size: 430px;
+  background-size: 1000px;
   width: 430px;
   height: 430px;
+  border-radius: 5px 0 0 5px;
+
+  span {
+    color: ${Colors.white};
+  }
 `;
 
 const LatestPublicationFeaturedFooter = styled.div`
@@ -43,8 +51,8 @@ const PublicationCard = styled.div`
   }
 `;
 
-const Title = styled.p`
-  color: ${Colors.blue3};
+const Title = styled("p")<{ txtColor: string }>`
+  color: ${(props) => props.txtColor};
   font-size: 20px;
 `;
 
@@ -53,6 +61,7 @@ const CardDetails = styled.div`
   position: relative;
   padding: 10px;
   width: 100%;
+  color: ${Colors.gray1};
 `;
 
 const CardFooter = styled.div`
@@ -64,51 +73,63 @@ const CardFooter = styled.div`
 const Image = styled.img`
   width: 100px;
   height: 100px;
+  object-fit: cover;
 `;
 
-const Icon = styled.img`
-  width: 15px;
+const ProfilePhoto = styled.img`
+  width: 20px;
   vertical-align: middle;
   margin: 0 5px;
+  border-radius: 50%;
 `;
 
-function publications(): Publication[] {
-  let data: Repository<Publication> = new FakePublicaitonsRepository();
-  return data.getAll();
-}
-
 export const LatestPublications: FC = () => {
+  const posts = useSelector<IState, IPostReducer>((state) => ({
+    ...state.posts,
+  }));
+
+  const users = useSelector<IState, IUserReducer>((state) => ({
+    ...state.users,
+  }));
+
   return (
     <LatestPublicationsWrapper>
       <LatestPublicationFeatured>
         <LatestPublicationFeaturedFooter>
           {
             <div>
-              <Title>{publications()[0].title}</Title>
-              {publications()[0].date}
-              <Icon src="./media/icons/people.svg" />
-              {publications()[0].userName}
+              <Title txtColor={Colors.white}>{posts.postsList[0]?.title}</Title>
+              <span>7 jan. 2020</span>
+              <ProfilePhoto src="./media/photos/profile-photo.png" />
+              <span>
+                {
+                  users.userList.find(
+                    (user) => user.id === posts.postsList[0].userId
+                  )?.name
+                }
+              </span>
             </div>
           }
         </LatestPublicationFeaturedFooter>
       </LatestPublicationFeatured>
       <LatestPublicationsRest>
-        <Title>Latest Publications</Title>
-        {publications().map((p, i) => (
+        <Title txtColor={Colors.blue1}>Latest Publications</Title>
+        {posts.postsList.slice(49, 52).map((post, index) => (
           <PublicationCard>
-            <Image src="./placeholder350.png" />
+            <Image
+              src={"/media/photos/publication-photo-" + (index % 3) + ".jpg"}
+            />
             <CardDetails>
-              <Title>{p.title}</Title>
+              <Title txtColor={Colors.blue1}>{post.title}</Title>
               <CardFooter>
-                <p>
-                  <Icon src="./media/icons/entities.png" />
-                  {p.date} &bull; {p.userName}
-                </p>
+                7 jan. 2020
+                <ProfilePhoto src="./media/photos/profile-photo.png" />
+                {users.userList.find((user) => user.id === post.userId)?.name}
               </CardFooter>
             </CardDetails>
           </PublicationCard>
         ))}
-        <Title>See more publications</Title>
+        <Title txtColor={Colors.blue2}>See more publications</Title>
       </LatestPublicationsRest>
     </LatestPublicationsWrapper>
   );
