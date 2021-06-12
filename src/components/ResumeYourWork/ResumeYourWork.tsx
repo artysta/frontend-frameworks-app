@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import ReactPaginate from "react-paginate";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
@@ -104,13 +104,24 @@ export const ResumeYourWork: FC = () => {
     setCurrentPage(selected);
   };
 
+  const [phrase, setFilterPhrase] = useState("");
+
+  const handleFilterInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const phrase = e.target.value;
+    setFilterPhrase(phrase);
+  };
+
   return (
     <ResumeYourWorkWrapper>
       <ResumeYourWorkItemsWrapper>
         <Title>Resume Your Work</Title>
         <Elements>
           <FilterWrapper>
-            <input type="text" placeholder="Filter by title..."></input>
+            <input
+              type="text"
+              placeholder="Filter by title..."
+              onChange={handleFilterInput}
+            ></input>
           </FilterWrapper>
           <SelectWrapper>
             <select>
@@ -121,6 +132,7 @@ export const ResumeYourWork: FC = () => {
       </ResumeYourWorkItemsWrapper>
       {comments.commentsList
         .slice(currentPage, currentPage + 8)
+        .filter((comment) => comment.name.includes(phrase))
         .map((comment) => (
           <YourWorkCard>
             <CardDetails>

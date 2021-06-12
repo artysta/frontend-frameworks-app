@@ -1,9 +1,6 @@
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
-import { Workspace } from "../../entities/Workspace";
-import { FakeWorkspacesRepository } from "../../repositories/FakeWorkspacesRepository";
-import { Repository } from "../../repositories/Repository";
 import { Filters } from "../Filters/Filters";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
@@ -209,6 +206,12 @@ export const EntitiesPage: FC = () => {
     setCurrentPage(selected);
   };
 
+  const [phrase, setFilterPhrase] = useState("");
+
+  const handleFilterInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const phrase = e.target.value;
+    setFilterPhrase(phrase);
+  };
 
   return (
     <Wrapper>
@@ -240,7 +243,10 @@ export const EntitiesPage: FC = () => {
         <VerticalLine />
         <Icon src="../media/icons/share.svg"></Icon>
         <span>Share</span>
-        <Search placeholder="Search..."></Search>
+        <Search
+          placeholder="Search by title..."
+          onChange={handleFilterInput}
+        ></Search>
         <VerticalLine />
         <SelectBorder>
           <Icon src="../media/icons/signal.svg"></Icon>
@@ -252,19 +258,22 @@ export const EntitiesPage: FC = () => {
         {filters && <Filters />}
       </FiltersContainer>
       <CardsWrapper className={list ? "list" : ""}>
-        {todos.todosList.slice(currentPage, currentPage + 30).map((todo, index) => (
-          <Card>
-            <Image
-              src={"/media/photos/publication-photo-" + (index % 4) + ".jpg"}
-            />
-            <CardDetails>
-              <Title>{todo.title.slice(0, 40)}</Title>
-              <CardFooter>
-                <span>Caracas 1050, Distrito Capital, Venezuela</span>
-              </CardFooter>
-            </CardDetails>
-          </Card>
-        ))}
+        {todos.todosList
+          .slice(currentPage, currentPage + 30)
+          .filter((todo) => todo.title.includes(phrase))
+          .map((todo, index) => (
+            <Card>
+              <Image
+                src={"/media/photos/publication-photo-" + (index % 4) + ".jpg"}
+              />
+              <CardDetails>
+                <Title>{todo.title.slice(0, 40)}</Title>
+                <CardFooter>
+                  <span>Caracas 1050, Distrito Capital, Venezuela</span>
+                </CardFooter>
+              </CardDetails>
+            </Card>
+          ))}
       </CardsWrapper>
       <PaginationContainer>
         <ReactPaginate
