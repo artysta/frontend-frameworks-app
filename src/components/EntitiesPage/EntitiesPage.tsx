@@ -247,6 +247,19 @@ export const EntitiesPage: FC = () => {
     });
   }
 
+  const copyURLToClipboard = () => {
+    var dummy = document.createElement('input'),
+    text = window.location.href;
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document!.body.removeChild(dummy);
+
+    alert(`URL of current page (${text}) has been copied to the clipboard!`)
+  }
+
   return (
     <Wrapper className={expanded ? "expanded" : ""}>
       <HeaderWrapper>
@@ -275,7 +288,7 @@ export const EntitiesPage: FC = () => {
         <VerticalLine />
         <Icon src="../media/icons/expand.svg" onClick={expandView}></Icon>
         <VerticalLine />
-        <Icon src="../media/icons/share.svg"></Icon>
+        <Icon src="../media/icons/share.svg" onClick={copyURLToClipboard}></Icon>
         <span>Share</span>
         <Search
           placeholder="Search by title..."
