@@ -5,6 +5,7 @@ import { Filters } from "../Filters/Filters";
 import { useSelector } from "react-redux";
 import { IState } from "../../reducers";
 import { ITodoReducer } from "../../reducers/todoReducers";
+import { ISingleTodo } from "../../entities/ISingleTodo";
 import ReactPaginate from "react-paginate";
 import { PaginationContainer } from "../../styledHelpers/Components";
 
@@ -180,6 +181,9 @@ export const EntitiesPage: FC = () => {
 
   const [filters, setFilters] = useState(false);
   const [list, setList] = useState(false);
+  const [sort, setSort] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [phrase, setFilterPhrase] = useState("");
 
   const showFilters = () => {
     setFilters(function changeValue(value) {
@@ -199,18 +203,28 @@ export const EntitiesPage: FC = () => {
     });
   };
 
-  const [currentPage, setCurrentPage] = useState<number>(0);
-
   const handlePageChange = (data: any) => {
     const selected = data.selected;
     setCurrentPage(selected);
   };
 
-  const [phrase, setFilterPhrase] = useState("");
-
   const handleFilterInput = (e: ChangeEvent<HTMLInputElement>) => {
     const phrase = e.target.value;
-    setFilterPhrase(phrase);
+    setFilterPhrase(phrase);  
+  };
+  
+  function getSortedTodos(array: any): ISingleTodo[] {
+    if (sort) {
+      return array.sort((a: ISingleTodo, b: ISingleTodo) => a.title.localeCompare(b.title));
+    } else {
+      return array.sort((b: ISingleTodo, a: ISingleTodo) => a.title.localeCompare(b.title));
+    }
+  }
+
+  const handleSortClick = () => {
+    setSort(function changeValue(value) {
+      return !value;
+    });
   };
 
   return (
@@ -234,7 +248,7 @@ export const EntitiesPage: FC = () => {
         </SelectLeft>
         <Icon src="../media/icons/more.svg"></Icon>
         <VerticalLine />
-        <Icon src="../media/icons/sort.svg"></Icon>
+        <Icon src="../media/icons/sort.svg" onClick={handleSortClick}></Icon>
         <span>Sort</span>
         <Icon onClick={showFilters} src="../media/icons/filter.svg"></Icon>
         <span>Filters</span>
@@ -255,11 +269,10 @@ export const EntitiesPage: FC = () => {
         </SelectBorder>
       </HeaderWrapper>
       <FiltersContainer className={filters ? "open" : ""}>
-        {filters && <Filters />}
+        {filters && <Filters />}  
       </FiltersContainer>
       <CardsWrapper className={list ? "list" : ""}>
-        {todos.todosList
-          .slice(currentPage, currentPage + 30)
+        {getSortedTodos(todos.todosList.slice(currentPage, currentPage + 30))
           .filter((todo) => todo.title.includes(phrase))
           .map((todo, index) => (
             <Card>
@@ -267,7 +280,7 @@ export const EntitiesPage: FC = () => {
                 src={"/media/photos/publication-photo-" + (index % 4) + ".jpg"}
               />
               <CardDetails>
-                <Title>{todo.title.slice(0, 40)}</Title>
+                <Title>{todo.title.slice(0, 35)}</Title>
                 <CardFooter>
                   <span>Caracas 1050, Distrito Capital, Venezuela</span>
                 </CardFooter>
