@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors";
 import { ICommentReducer } from "../../reducers/commentReducers";
@@ -211,6 +211,13 @@ export const ResumeYourWork: FC = () => {
     return urlParams.get('id');
   }
 
+  const [phrase, setFilterPhrase] = useState("");
+
+  const handleFilterInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const phrase = e.target.value;
+    setFilterPhrase(phrase);
+  };
+
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -262,7 +269,7 @@ export const ResumeYourWork: FC = () => {
         <Title>Last Updates</Title>
         <Elements>
           <FilterWrapper>
-            <input type="text" placeholder="Filter by title..."></input>
+            <input type="text" placeholder="Filter by title..." onChange={handleFilterInput}></input>
           </FilterWrapper>
           <SelectWrapper>
             <select>
@@ -305,6 +312,7 @@ export const ResumeYourWork: FC = () => {
       </ButtonsContainer>
       {comments.commentsList
         .slice(currentPage, currentPage + 8)
+        .filter((comment) => comment.name.includes(phrase))
         .map((comment) => (
           <YourWorkCard>
             <CardDetails>
