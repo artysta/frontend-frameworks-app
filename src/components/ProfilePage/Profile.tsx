@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../../styledHelpers/Colors"
 
@@ -28,7 +28,45 @@ const UserContact = styled.div`
   align-items: flex-end;
 `;
 
+const EditableField = styled.input`
+  border: 0;
+  outline: none;
+  margin: 2px;
+
+  :enabled {
+    border: 1px solid ${Colors.blue3};
+    border-radius: 3px;
+
+    :focus {
+
+    }
+  }
+
+  :disabled {
+    background-color: ${Colors.white};
+  }
+
+`
+
+const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+
 export const Profile: FC = () => {
+  const [editable, setEnabled] = useState(true);
+  
+  const handleEdit = () => {
+    setEnabled(function changeValue(value) {
+      return !value;
+    });
+  };
+
   return (
     <Wrapper>
       <UserPhoto>
@@ -36,15 +74,15 @@ export const Profile: FC = () => {
         <p>See profile</p>
       </UserPhoto>
       <UserInformation>
-        <p>
-          Humberta Swift
+        <EditableField disabled={editable} defaultValue="Humberta Swift" contentEditable={true}/>
+        <br />
+        <EditableField disabled={editable} defaultValue="Clifford Chance" contentEditable={true}/>
+        <br />
+        <EditableField disabled={editable} defaultValue="New York" contentEditable={true}/>
           <br />
-          Clifford Chance
-          <br />
-          New York
-          <br />
-          Parnert
-        </p>
+        <EditableField disabled={editable} defaultValue="Parnert" contentEditable={true}/>
+        <br />
+      <Icon src="./media/icons/settings.svg" onClick={handleEdit}></Icon>
       </UserInformation>
       <UserContact>
         <p>
