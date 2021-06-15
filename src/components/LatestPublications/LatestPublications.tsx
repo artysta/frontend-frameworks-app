@@ -1,8 +1,5 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Publication } from "../../entities/Publication";
-import { FakePublicaitonsRepository } from "../../repositories/FakePublicationsRepository";
-import { Repository } from "../../repositories/Repository";
 import { Colors } from "../../styledHelpers/Colors";
 import { IPostReducer } from "../../reducers/postReducers";
 import { IUserReducer } from "../../reducers/userReducers";
