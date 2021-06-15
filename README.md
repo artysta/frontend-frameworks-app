@@ -34,7 +34,7 @@ Start aplikacji:
     
     yarn start
     
-# #3 Zrzuty ekranu
+# 3. Zrzuty ekranu
 
 <table>
  <tr>
